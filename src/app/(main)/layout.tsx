@@ -5,7 +5,7 @@ import NavBar from "@/components/shared/NavBar";
 // import SideMenuBar from "@/components/shared/SideMenuBar";
 
 // MAIN LAYOUT
-export default async function Layout({
+export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ export default async function Layout({
       <div className="flex min-h-screen flex-col">
         {/* SHOW NAVBAR */}
         <NavBar />
-        <div className="mx-auto flex w-full max-w-7xl grow gap-5 p-5">
+        <div className="mx-auto flex w-full max-w-[95%] grow gap-5 p-5">
           {children}
         </div>
       </div>
