@@ -1,5 +1,5 @@
 import streamServer from "@/lib/stream";
-import { validateRequest } from "@/utils/auth";
+import { validateRequest } from "@/lib/auth";
 import { StreamMessageUnreadCount } from "@/utils/types";
 
 // GET ROUTE to get unread stream msgs

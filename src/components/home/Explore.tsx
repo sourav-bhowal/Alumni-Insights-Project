@@ -1,47 +1,54 @@
 "use client";
-
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import exploreImage from "@/assets/exp1.jpg";
+import alumni from "@/assets/alumni.jpg";
+import job from "@/assets/job.jpg";
+import donate from "@/assets/donate.jpg";
 
 const exploreItems = [
   {
     title:
       "Reconnect with old classmates, discover new professional connections, and be part of a vibrant alumni community.",
-    link: "/beaches",
+    link: "/events",
     btn: "Join Us",
+    image: alumni,
   },
   {
     title:
       "Your contributions help fund scholarships, campus improvements, and special projects that benefit current and future students.",
-    link: "/mountains",
+    link: "/donate",
     btn: "Donate Today",
+    image: donate,
   },
   {
     title:
       "Whether you’re looking to hire, seeking a new role our job portal connects you with valuable resources within our alumni network.",
-    link: "/cities",
+    link: "/jobs",
     btn: "Find Jobs",
+    image: job,
   },
   {
     title:
       "Reconnect with old classmates, discover new professional connections, and be part of a vibrant alumni community.",
-    link: "/forests",
+    link: "/internships",
     btn: "Join Us",
+    image: alumni,
   },
   {
     title:
       "Your contributions help fund scholarships, campus improvements, and special projects that benefit current and future students.",
     link: "/deserts",
     btn: "Donate Today",
+    image: donate,
   },
   {
     title:
       "Whether you’re looking to hire, seeking a new role our job portal connects you with valuable resources within our alumni network.",
     link: "/islands",
     btn: "Find Jobs",
+    image: job,
   },
 ];
 
@@ -88,9 +95,9 @@ export default function ExploreSection() {
             {exploreItems.map((item, index) => (
               <div key={index} className="w-[300px] flex-none">
                 <div className="relative h-[500px] overflow-hidden rounded-lg">
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-80" />
+                  <div className="absolute inset-0 bg-black/50" />
                   <Image
-                    src={exploreImage}
+                    src={item.image}
                     alt={item.title}
                     width={600}
                     height={400}
@@ -103,7 +110,7 @@ export default function ExploreSection() {
                     <Button
                       variant="secondary"
                       asChild
-                      className="mt-5 rounded-full border-2 border-primary bg-card w-[120px]"
+                      className="mt-5 w-[120px] rounded-full border-2 border-primary bg-card text-black dark:text-white hover:bg-primary/90"
                     >
                       <a href={item.link}>{item.btn}</a>
                     </Button>

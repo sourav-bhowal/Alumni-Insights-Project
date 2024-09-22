@@ -19,3 +19,10 @@ export function formatRelativeDate(fromDate: Date) {
     }
   }
 }
+
+// utils/date.ts
+import { differenceInMinutes } from "date-fns";
+
+export function isWithinOneHour(date: Date): boolean {
+  return differenceInMinutes(new Date(), new Date(date)) <= 60;
+}

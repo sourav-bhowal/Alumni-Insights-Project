@@ -26,12 +26,25 @@ export type UserData = Prisma.UserGetPayload<{
   select: ReturnType<typeof getUserData>;
 }>;
 
+// GET REFER JOB DATA
+export function getReferJobData(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserData(loggedInUserId),
+    },
+  } satisfies Prisma.ReferJobInclude;
+}
 
+// TYPE OF JOB DATA
+export type ReferJobData = Prisma.ReferJobGetPayload<{
+  include: ReturnType<typeof getReferJobData>;
+}>;
 
-
-
-
-
+// REFER JOB PAGE
+export interface ReferJobPage {
+  referJobs: ReferJobData[];
+  nextCursor: string | null;
+}
 
 // GET NOTIFICATION DATA
 // export const getNotificationsData = {
@@ -51,7 +64,7 @@ export type UserData = Prisma.UserGetPayload<{
 
 // TYPE OF NOTIFICATION DATA
 // export type NotificationData = Prisma.NotificationGetPayload<{
-  // include: typeof getNotificationsData;
+// include: typeof getNotificationsData;
 // }>;
 
 // TYPE OF NOTIFICATION PAGE

@@ -35,9 +35,9 @@ model User {
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   referInternships ReferInternship[]
+  referJobs        ReferJob[]
 
   @@map("users")
-  referJobs ReferJob[]
 }
 
 // PROJECTS MODEL
@@ -168,7 +168,8 @@ model ReferInternship {
   description String
   location    String
   duration    String
-  stipend     String
+  stipend     Int
+  workType    String
   category    String[]
   skills      String[]
   applyLink   String
@@ -180,18 +181,20 @@ model ReferInternship {
 
 // REFER JOBS MODEL
 model ReferJob {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title       String
-  description String
-  location    String
-  salary      String
-  category    String[]
-  skills      String[]
-  applyLink   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  company   String
+  location  String
+  workType  String
+  jobType   String
+  salary    String
+  category  String[]
+  skills    String[]
+  applyLink String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("refer_jobs")
 }

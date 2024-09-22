@@ -49,6 +49,14 @@ export default function UserToolTip({ user, children }: UserToolTipProps) {
                   <p className="line-clamp-4 whitespace-pre-line">{user.bio}</p>
                 </LinkifyLinks>
               )}
+              <p className="mt-2">
+                Projects:{" "}
+                <span className="font-bold">{user._count.projects}</span>
+              </p>
+              <p>
+                Research Papers:{" "}
+                <span className="font-bold">{user._count.researchPapers}</span>
+              </p>
             </div>
           </div>
         </TooltipContent>
