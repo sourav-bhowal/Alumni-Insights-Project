@@ -13,12 +13,12 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu } from "lucide-react"
+import { Menu, Outdent, PinIcon } from "lucide-react"
 
 const services = [
-  { title: "Jobs", href: "/services/jobs", description: "Find your next career opportunity" },
-  { title: "Internships", href: "/services/internships", description: "Gain valuable work experience" },
-  { title: "Mentorship", href: "/services/mentorship", description: "Connect with industry professionals" },
+  { title: "Jobs", href: "/services/jobs", description: "Find your next career opportunity", image: PinIcon },
+  { title: "Internships", href: "/services/internships", description: "Gain valuable work experience", image: Outdent },
+  { title: "Mentorship", href: "/services/mentorship", description: "Connect with industry professionals", Image },
 ]
 
 export default function Navbar() {

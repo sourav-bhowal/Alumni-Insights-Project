@@ -1,5 +1,5 @@
 "use client";
-import AddReferJobDialog from "@/components/jobs/addReferJob/AddReferJob";
+import AddReferJobDialog from "@/components/refer-jobs/addReferJob/AddReferJob";
 import React, { useState } from "react";
 
 // Add Refer Job Button

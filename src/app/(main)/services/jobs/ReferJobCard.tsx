@@ -17,9 +17,10 @@ import {
   BanknoteIcon,
   ArrowUpRightIcon,
   Clock10Icon,
+  MapIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ReferJobMoreButtons from "@/components/jobs/ReferJobMoreButtons";
+import ReferJobMoreButtons from "@/components/refer-jobs/ReferJobMoreButtons";
 // INTERFACE OF REFER JOB CARD
 interface ReferJobCardProps {
   referJob: ReferJobData;
@@ -35,15 +36,15 @@ export default function ReferJobCard({ referJob }: ReferJobCardProps) {
   // JSX
   return (
     <Card className="group/referJob w-full bg-card text-zinc-100">
-      <CardHeader>
+      <CardHeader className="space-y-1">
         <div className="flex flex-col gap-3 sm:flex-row sm:gap-5">
-          <div className="flex w-full flex-col justify-between sm:flex-row sm:items-center sm:gap-5">
+          <div className="flex w-full flex-row items-center justify-between sm:gap-5">
             <div className="flex sm:gap-5">
-              <CardTitle className="text-lg font-bold capitalize sm:text-2xl">
+              <CardTitle className="text-lg font-bold capitalize text-black dark:text-white sm:text-2xl">
                 {referJob.title}
               </CardTitle>
               <Button
-                className={`hidden h-8 items-center gap-2 rounded-full bg-gray-500/35 pr-3 text-center text-sm font-medium capitalize text-gray-500 hover:bg-gray-500/50 md:flex ${
+                className={`hidden h-8 items-center justify-start gap-2 bg-gray-500/35 text-sm font-medium capitalize text-gray-500 hover:bg-gray-500/50 md:flex ${
                   isNew &&
                   "bg-green-500/30 text-green-500 hover:bg-green-500/50"
                 }`}
@@ -76,22 +77,34 @@ export default function ReferJobCard({ referJob }: ReferJobCardProps) {
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex flex-col text-xs sm:flex-row sm:items-center sm:space-x-2 sm:text-sm">
+        <div className="flex flex-col text-xs sm:flex-row sm:items-center sm:space-x-5 sm:text-sm">
           <div className="flex items-center space-x-2">
             <MapPinIcon className="h-4 w-4 text-primary" />
-            <span className="capitalize">{referJob.location}</span>
+            <span className="capitalize text-black dark:text-white">
+              {referJob.location}
+            </span>
           </div>
           <div className="mt-2 flex items-center space-x-2 sm:mt-0">
             <ClockIcon className="h-4 w-4 text-primary" />
-            <span className="capitalize">{referJob.workType}</span>
+            <span className="capitalize text-black dark:text-white">
+              {referJob.workType}
+            </span>
           </div>
           <div className="mt-2 flex items-center space-x-2 sm:mt-0">
             <BanknoteIcon className="h-4 w-4 text-primary" />
-            <span>₹ {referJob.salary} / month</span>
+            <span className="text-black dark:text-white">
+              ₹ {referJob.salary} / month
+            </span>
+          </div>
+          <div className="mt-2 flex items-center space-x-2 sm:mt-0">
+            <MapIcon className="h-4 w-4 text-primary" />
+            <span className="capitalize text-black dark:text-white">
+              {referJob.jobType}
+            </span>
           </div>
         </div>
         <div>
-          <h3 className="mb-2 text-sm font-semibold tracking-wide">
+          <h3 className="mb-2 text-sm font-semibold tracking-wide text-black dark:text-white">
             CATEGORIES
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -106,7 +119,9 @@ export default function ReferJobCard({ referJob }: ReferJobCardProps) {
           </div>
         </div>
         <div>
-          <h3 className="mb-2 text-sm font-semibold tracking-wide">SKILLS</h3>
+          <h3 className="mb-2 text-sm font-semibold tracking-wide text-black dark:text-white">
+            SKILLS
+          </h3>
           <div className="flex flex-wrap gap-2 md:w-[80%]">
             {referJob.skills.map((skill) => (
               <Button
@@ -121,7 +136,7 @@ export default function ReferJobCard({ referJob }: ReferJobCardProps) {
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-3">
         <Link href={referJob.applyLink}>
-          <Button className="text-md mt-4 w-full border-2 border-primary bg-background text-center font-bold tracking-wide text-white hover:bg-primary sm:w-fit">
+          <Button className="text-md mt-4 w-full border-2 border-primary bg-background text-center font-bold tracking-wide text-black hover:bg-primary dark:text-white sm:w-fit">
             Apply Now
             <ArrowUpRightIcon className="ml-2 h-4 w-4" />
           </Button>

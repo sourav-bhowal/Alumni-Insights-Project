@@ -4,7 +4,7 @@ import { validateRequest } from "@/lib/auth";
 import { getReferJobData } from "@/utils/types";
 
 // DELETE REFER JOB
-export async function deleteReferJob(id: string) {
+export async function deleteReferJob(referJobId: string) {
   // Take user from session
   const { user } = await validateRequest();
 
@@ -13,7 +13,7 @@ export async function deleteReferJob(id: string) {
 
   // Find refer Job
   const referJob = await prisma.referJob.findUnique({
-    where: { id },
+    where: { id: referJobId },
   });
 
   // If no refer job
@@ -24,7 +24,7 @@ export async function deleteReferJob(id: string) {
 
   // Delete refer job
   const deletedReferJob = await prisma.referJob.delete({
-    where: { id },
+    where: { id: referJobId },
     include: getReferJobData(user.id),
   });
 

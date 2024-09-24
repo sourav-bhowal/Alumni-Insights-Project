@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
-// TYPE
+// TYPE OF DELETE REFER JOB DIALOGUE PROPS
 interface DeleteReferJobDialogueProps {
   referJob: ReferJobData;
   open: boolean;
@@ -24,7 +24,7 @@ export default function DeleteReferjobDialogue({
   open,
   onClose,
 }: DeleteReferJobDialogueProps) {
-    // delete mutation
+  // delete mutation
   const mutation = useDeleteReferJobMutation();
 
   // handle open
@@ -33,7 +33,7 @@ export default function DeleteReferjobDialogue({
       onClose();
     }
   }
-
+  // JSX
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>

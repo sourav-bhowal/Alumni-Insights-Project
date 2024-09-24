@@ -39,14 +39,14 @@ export const signInSchema = z.object({
 
 // CREATE JOB SCHEMA
 export const createReferJobSchema = z.object({
-  title: z.string().trim().min(1, "Title is required"),
-  company: z.string().trim().min(1, "Company is required"),
-  location: z.string().trim().min(1, "Location is required"),
+  title: z.string().trim().min(1, "Title is required").max(100, "Title must not exceed 100 characters"),
+  company: z.string().trim().min(1, "Company is required").max(100, "Company must not exceed 100 characters"),
+  location: z.string().trim().min(1, "Location is required").max(100, "Location must not exceed 100 characters"),
   skills: z.string().trim().min(1, "Skills are required"),
   workType: z.enum(["full-time", "part-time", "contract"]),
   category: z.string().trim().min(1, "Category is required"),
   salary: z.string().trim().min(1, "Salary is required"),
-  applyLink: z.string().trim().min(1, "Apply Link is required"),
+  applyLink: z.string().trim().min(1, "Apply Link is required").url("Invalid URL"),
   jobType: z.enum(["onsite", "remote"]),
 });
 

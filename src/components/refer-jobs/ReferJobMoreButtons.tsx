@@ -9,13 +9,15 @@ import {
 import { Button } from "../ui/button";
 import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
 import DeleteReferjobDialogue from "./deleteJob/DeleteReferJob";
-// import EditPostDialog from "./editPost/editPostDialog";
+import EditReferJobDialogue from "./editJob/EditReferJob";
 
+// TYPE OF MORE REFER JOB BUTTON PROPS
 interface MoreReferJobButtonProps {
   referJob: ReferJobData;
   className?: string;
 }
 
+// MORE REFER JOB BUTTONS COMPONENT
 export default function ReferJobMoreButtons({
   referJob,
   className,
@@ -24,6 +26,7 @@ export default function ReferJobMoreButtons({
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
 
+  // JSX
   return (
     <>
       <DropdownMenu>
@@ -47,16 +50,18 @@ export default function ReferJobMoreButtons({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      {/* DELETE  */}
       <DeleteReferjobDialogue
         referJob={referJob}
         open={showDeleteDialog}
         onClose={() => setShowDeleteDialog(false)}
       />
-      {/* <EditPostDialog
-       post={post}
-       open={showEditDialog}
-       onOpenChange={setShowEditDialog}
-      /> */}
+      {/* EDIT */}
+      <EditReferJobDialogue
+        referJob={referJob}
+        open={showEditDialog}
+        onOpenChange={setShowEditDialog}
+      />
     </>
   );
 }
