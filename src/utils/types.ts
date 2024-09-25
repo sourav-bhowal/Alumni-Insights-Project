@@ -7,6 +7,8 @@ export function getUserData(loggedInUserId: string) {
     username: true,
     displayName: true,
     bio: true,
+    location: true,
+    yearOfGrad: true,
     isAlumni: true,
     isMentor: true,
     createdAt: true,

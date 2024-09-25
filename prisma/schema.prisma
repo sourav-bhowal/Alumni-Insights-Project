@@ -20,12 +20,13 @@ model User {
   googleId         String?           @unique
   avatarUrl        String?
   bio              String?
+  location         String?
   yearOfGrad       Int?
   isAlumni         Boolean           @default(false)
   isMentor         Boolean           @default(false)
   isAdmin          Boolean           @default(false)
   sessions         Session[]
-  skills           String[]
+  skills           Skill[]
   projects         Project[]
   internships      Internship[]
   researchPapers   ResearchPaper[]
@@ -38,6 +39,17 @@ model User {
   referJobs        ReferJob[]
 
   @@map("users")
+}
+
+// SKILL MODEL
+model Skill {
+  id        String   @id @default(cuid())
+  name      String
+  User      User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("skills")
 }
 
 // PROJECTS MODEL

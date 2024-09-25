@@ -8,6 +8,7 @@ export default function ReactQueryProvider({
 }: {
   children: React.ReactNode;
 }) {
+  // Create a client and pass it to the provider
   const [client] = useState(new QueryClient());
 
   return (

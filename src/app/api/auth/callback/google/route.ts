@@ -1,6 +1,6 @@
-import { prisma } from "@/lib/prismaDB";
+import { prisma } from "@/lib/prisma";
 import streamServer from "@/lib/stream";
-import { google, lucia } from "@/utils/auth";
+import { google, lucia } from "@/lib/auth";
 import { kyInstance } from "@/utils/ky";
 import { OAuth2RequestError } from "arctic";
 import { generateIdFromEntropySize } from "lucia";
@@ -84,7 +84,7 @@ export async function GET(request: NextRequest) {
         data: {
           id: userId,
           username,
-          name: googleUser.name,
+          displayName: googleUser.name,
           googleId: googleUser.id,
         },
       });
