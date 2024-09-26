@@ -1,5 +1,6 @@
 "use server";
 import { cn } from "@/lib/utils";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -40,26 +41,27 @@ export const Pagination = (props: PaginationProps) => {
     <div className="flex items-center justify-center space-x-6 text-black dark:text-white">
       <Link
         className={cn(
-          "rounded-md border-[2px] border-primary px-3 py-2 text-sm font-medium hover:bg-card",
+          "flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-card",
           currentPage === 1 ? "pointer-events-none bg-muted-foreground" : "",
         )}
         href={`?page=${currentPage - 1}`}
       >
+        <ArrowLeft size={16} />
         Previous
       </Link>
 
       <nav
         aria-label="Pagination"
-        className="relative z-0 md:inline-flex -space-x-px rounded-md hidden"
+        className="relative z-0 hidden gap-2 -space-x-px rounded-md md:inline-flex"
       >
         {pages.map((p, i) => (
           <Link
             key={p}
             className={cn(
-              "relative inline-flex items-center border-[2px] border-primary px-4 py-2 text-sm font-medium hover:bg-card",
-              p === currentPage ? "pointer-events-none bg-primary/70" : "",
-              i === 0 ? "rounded-l-md" : "",
-              i === pages.length - 1 ? "rounded-r-md" : "",
+              "relative flex items-center rounded-md px-4 py-2 text-sm font-medium hover:bg-card",
+              p === currentPage
+                ? "pointer-events-none border-2 border-primary bg-card"
+                : "",
             )}
             href={`?page=${p}`}
           >
@@ -70,12 +72,13 @@ export const Pagination = (props: PaginationProps) => {
 
       <Link
         className={cn(
-          "rounded-md border-[2px] border-primary px-4 py-2 text-sm font-medium hover:bg-card",
+          "flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-card",
           !hasNextPage ? "pointer-events-none bg-muted-foreground" : "",
         )}
         href={`?page=${currentPage + 1}`}
       >
         Next
+        <ArrowRight size={16} />
       </Link>
     </div>
   );
