@@ -21,6 +21,8 @@ model User {
   avatarUrl        String?
   bio              String?
   location         String?
+  domain           String?
+  fieldOfStudy     String?
   yearOfGrad       Int?
   isAlumni         Boolean           @default(false)
   isMentor         Boolean           @default(false)
@@ -84,6 +86,7 @@ model ResearchPaper {
   id          String   @id @default(cuid())
   title       String
   description String
+  link        String
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())

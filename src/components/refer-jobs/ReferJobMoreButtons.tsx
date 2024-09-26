@@ -8,8 +8,8 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
-import DeleteReferjobDialogue from "./deleteJob/DeleteReferJob";
-import EditReferJobDialogue from "./editJob/EditReferJob";
+import DeleteReferjobDialogue from "./deleteReferJob/DeleteReferJob";
+import EditReferJobDialogue from "./editReferJob/EditReferJob";
 
 // TYPE OF MORE REFER JOB BUTTON PROPS
 interface MoreReferJobButtonProps {

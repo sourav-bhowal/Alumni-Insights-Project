@@ -48,6 +48,26 @@ export interface ReferJobPage {
   nextCursor: string | null;
 }
 
+// GET REFER INTERNSHIP DATA
+export function getReferInternshipData(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserData(loggedInUserId),
+    },
+  } satisfies Prisma.ReferInternshipInclude;
+}
+
+// TYPE OF INTERNSHIP DATA
+export type ReferInternshipData = Prisma.ReferInternshipGetPayload<{
+  include: ReturnType<typeof getReferInternshipData>;
+}>;
+
+// REFER INTERNSHIP PAGE
+export interface ReferInternshipPage {
+  referInternships: ReferInternshipData[];
+  nextCursor: string | null;
+}
+
 // GET NOTIFICATION DATA
 // export const getNotificationsData = {
 //   issuer: {

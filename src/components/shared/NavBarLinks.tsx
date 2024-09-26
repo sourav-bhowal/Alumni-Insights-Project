@@ -1,8 +1,8 @@
-"use client"
-import * as React from "react"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,18 +11,30 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Outdent, PinIcon } from "lucide-react"
+} from "@/components/ui/navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, Outdent, PinIcon } from "lucide-react";
 
 const services = [
-  { title: "Jobs", href: "/services/jobs", description: "Find your next career opportunity", image: PinIcon },
-  { title: "Internships", href: "/services/internships", description: "Gain valuable work experience", image: Outdent },
-  { title: "Mentorship", href: "/services/mentorship", description: "Connect with industry professionals", Image },
-]
+  {
+    title: "Jobs",
+    href: "/services/jobs",
+    description: "Find your next career opportunity",
+  },
+  {
+    title: "Internships",
+    href: "/services/internships",
+    description: "Gain valuable work experience",
+  },
+  {
+    title: "Mentorship",
+    href: "/services/mentorship",
+    description: "Connect with industry professionals",
+  },
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <header className="">
@@ -79,7 +91,11 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="right">
             <nav className="flex flex-col space-y-4">
-              <Link href="/" className="text-lg font-semibold" onClick={() => setIsOpen(false)}>
+              <Link
+                href="/"
+                className="text-lg font-semibold"
+                onClick={() => setIsOpen(false)}
+              >
                 Home
               </Link>
               <div className="space-y-2">
@@ -95,10 +111,18 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
-              <Link href="/alumni" className="text-lg font-semibold" onClick={() => setIsOpen(false)}>
+              <Link
+                href="/alumni"
+                className="text-lg font-semibold"
+                onClick={() => setIsOpen(false)}
+              >
                 Alumni Community
               </Link>
-              <Link href="/contact" className="text-lg font-semibold" onClick={() => setIsOpen(false)}>
+              <Link
+                href="/contact"
+                className="text-lg font-semibold"
+                onClick={() => setIsOpen(false)}
+              >
                 Contact
               </Link>
             </nav>
@@ -106,7 +130,7 @@ export default function Navbar() {
         </Sheet>
       </div>
     </header>
-  )
+  );
 }
 
 const ListItem = React.forwardRef<
@@ -120,7 +144,7 @@ const ListItem = React.forwardRef<
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            className,
           )}
           {...props}
         >
@@ -131,6 +155,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";

@@ -1,3 +1,4 @@
+import ApplyFilterButton from "@/components/shared/ApplyFilterButton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -140,9 +141,9 @@ export default async function ReferJobsFilters() {
               <option value="200000+">200,000+</option>
             </Select>
           </div>
-          <Button type="submit" className="w-full">
+          <ApplyFilterButton className="w-full">
             Apply Filters
-          </Button>
+          </ApplyFilterButton>
         </div>
       </form>
     </aside>
