@@ -180,9 +180,9 @@ model ReferInternship {
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
-  description String
+  company     String
   location    String
-  duration    String
+  duration    Int
   stipend     Int
   workType    String
   category    String[]

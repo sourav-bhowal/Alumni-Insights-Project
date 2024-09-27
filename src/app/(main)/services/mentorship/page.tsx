@@ -1,7 +1,8 @@
-import { FilterIcon } from "lucide-react";
+import { FilterIcon, Loader2 } from "lucide-react";
 import MentorsFilters from "./MentorFilters";
 import MentorsSection from "./MentorsSection";
 import { FilterMentors } from "@/lib/filterValidations";
+import { Suspense } from "react";
 
 // MENTOR PAGE PROPS
 interface MentorPageProps {
@@ -45,7 +46,9 @@ export default async function MentorPage({
       <div className="w-full p-4">
         <h2 className="mb-4 text-lg font-semibold">Our Mentors</h2>
         {/* Add mentors display components here */}
-        <MentorsSection filterValues={mentorFilterValues} />
+        <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+          <MentorsSection filterValues={mentorFilterValues} />
+        </Suspense>
       </div>
     </main>
   );

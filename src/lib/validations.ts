@@ -1,4 +1,3 @@
-import { use } from "react";
 import { z } from "zod";
 
 // SIGN-UP SCHEMA
@@ -107,4 +106,38 @@ export const updateUserProfileSchema = z.object({
 // SCHEMA VALIDATIONS FOR FORMS
 export type UpdateUserProfileSchemaType = z.infer<
   typeof updateUserProfileSchema
+>;
+
+// CREATE INTRENSHIP SCHEMA
+export const createReferInternshipSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(1, "Title is required")
+    .max(100, "Title must not exceed 100 characters"),
+  company: z
+    .string()
+    .trim()
+    .min(1, "Company is required")
+    .max(100, "Company must not exceed 100 characters"),
+  location: z
+    .string()
+    .trim()
+    .min(1, "Location is required")
+    .max(100, "Location must not exceed 100 characters"),
+  skills: z.string().trim().min(1, "Skills are required"),
+  workType: z.enum(["onsite", "remote"]),
+  category: z.string().trim().min(1, "Category is required"),
+  stipend: z.coerce.number().min(1, "Salary is required"),
+  duration: z.coerce.number().min(1, "Duration is required"),
+  applyLink: z
+    .string()
+    .trim()
+    .min(1, "Apply Link is required")
+    .url("Invalid URL"),
+});
+
+// SCHEMA VALIDATIONS FOR FORMS
+export type CreateReferInternshipSchemaType = z.infer<
+  typeof createReferInternshipSchema
 >;
