@@ -12,6 +12,9 @@ interface DatabaseUserAttributes {
   name: string;
   avatarUrl: string | null;
   googleId: string | null;
+  isAdmin: boolean;
+  isMentor: boolean;
+  isAlumni: boolean;
 }
 
 // GOOGLE OAuth INSTANCE
@@ -47,6 +50,9 @@ export const lucia = new Lucia(adapter, {
       name: databaseUserAttributes.name,
       avatarUrl: databaseUserAttributes.avatarUrl,
       googleId: databaseUserAttributes.googleId,
+      isAdmin: databaseUserAttributes.isAdmin,
+      isMentor: databaseUserAttributes.isMentor,
+      isAlumni: databaseUserAttributes.isAlumni,
     };
   },
 });

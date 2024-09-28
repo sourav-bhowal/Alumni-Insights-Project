@@ -163,6 +163,8 @@ model Event {
   title            String
   description      String
   date             DateTime
+  time             String
+  type             String
   userId           String
   user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments      Attachment[]
@@ -176,20 +178,20 @@ model Event {
 
 // REFER INTERNSHIPS MODEL
 model ReferInternship {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title       String
-  company     String
-  location    String
-  duration    Int
-  stipend     Int
-  workType    String
-  category    String[]
-  skills      String[]
-  applyLink   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  company   String
+  location  String
+  duration  Int
+  stipend   Int
+  workType  String
+  category  String[]
+  skills    String[]
+  applyLink String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("refer_internships")
 }

@@ -68,6 +68,27 @@ export interface ReferInternshipPage {
   nextCursor: string | null;
 }
 
+// GET EVENT DATA
+export function getEventData(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserData(loggedInUserId),
+    },
+  } satisfies Prisma.EventInclude;
+}
+
+// TYPE OF EVENT DATA
+export type EventData = Prisma.EventGetPayload<{
+  include: ReturnType<typeof getEventData>;
+}>;
+
+// EVENT PAGE
+export interface EventPage {
+  events: EventData[];
+  nextCursor: string | null;
+}
+
+
 // GET NOTIFICATION DATA
 // export const getNotificationsData = {
 //   issuer: {

@@ -1,3 +1,4 @@
+import { title } from "process";
 import { z } from "zod";
 
 // SIGN-UP SCHEMA
@@ -141,3 +142,35 @@ export const createReferInternshipSchema = z.object({
 export type CreateReferInternshipSchemaType = z.infer<
   typeof createReferInternshipSchema
 >;
+
+// CREATE EVENT SCHEMA
+export const createEventSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(1, "Title is required")
+    .max(100, "Title must not exceed 100 characters"),
+  description: z
+    .string()
+    .trim()
+    .min(1, "Description is required")
+    .max(1000, "Description must not exceed 1000 characters"),
+  location: z
+    .string()
+    .trim()
+    .min(1, "Location is required")
+    .max(100, "Location must not exceed 100 characters"),
+  date: z.date().min(new Date(), "Date must be in the future"),
+  type: z.enum(["workshop", "seminar", "conference", "webinar", "reunion"]),
+  time: z.string().trim().min(1, "Time is required"),
+  registrationLink: z
+    .string()
+    .trim()
+    .min(1, "Registration Link is required")
+    .url("Invalid URL")
+    .optional(),
+  mediaIds: z.array(z.string()).max(2, "Max 2 attachemnt per event"),
+});
+
+// SCHEMA VALIDATIONS FOR FORMS
+export type CreateEventSchemaType = z.infer<typeof createEventSchema>;

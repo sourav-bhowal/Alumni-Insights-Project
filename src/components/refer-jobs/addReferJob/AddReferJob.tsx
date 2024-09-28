@@ -156,7 +156,9 @@ export default function AddReferJobDialog({
                             type="radio"
                             {...field}
                             value={"full-time"}
-                            onChange={() => form.setValue("workType", "full-time")}
+                            onChange={() =>
+                              form.setValue("workType", "full-time")
+                            }
                             checked={form.getValues("workType") === "full-time"}
                           />
                           <span>Full-time</span>
@@ -166,7 +168,9 @@ export default function AddReferJobDialog({
                             type="radio"
                             {...field}
                             value={"part-time"}
-                            onChange={() => form.setValue("workType", "part-time")}
+                            onChange={() =>
+                              form.setValue("workType", "part-time")
+                            }
                             checked={form.getValues("workType") === "part-time"}
                           />
                           <span>Part-time</span>
@@ -176,7 +180,9 @@ export default function AddReferJobDialog({
                             type="radio"
                             {...field}
                             value={"contract"}
-                            onChange={() => form.setValue("workType", "contract")}
+                            onChange={() =>
+                              form.setValue("workType", "contract")
+                            }
                             checked={form.getValues("workType") === "contract"}
                           />
                           <span>Contract</span>
