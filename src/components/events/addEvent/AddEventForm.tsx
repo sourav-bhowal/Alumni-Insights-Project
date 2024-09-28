@@ -130,6 +130,7 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
     );
   }
 
+  // JSX
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
