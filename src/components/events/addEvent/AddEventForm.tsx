@@ -85,14 +85,18 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
     },
   });
 
+  // STEPS OF FORM
   const steps = [
     { title: "Basic Info", fields: ["title", "description", "type"] },
     { title: "Date & Location", fields: ["location", "date", "time"] },
     { title: "Registration", fields: ["registrationLink"] },
     { title: "Media Upload", fields: [] },
   ];
+
+  // CURRENT STEP STATE OF FORM
   const [currentStep, setCurrentStep] = useState(0);
 
+  // HANDLE NEXT STEP
   const handleNext = async () => {
     const fields = steps[currentStep].fields;
     const isValid = await form.trigger(fields as any);
@@ -101,6 +105,7 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
     }
   };
 
+  // HANDLE BACK STEP
   const handleBack = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 0));
   };
@@ -332,7 +337,7 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
                     {mutation.isPending ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
-                      "Create Event"
+                      "Save"
                     )}
                   </Button>
                 )}
