@@ -39,7 +39,7 @@ export default async function MentorsSection({
   const skip = (Number(page) - 1) * Number(perPage);
 
   // Try to get cached mentors data
-  const cachedMentors = await redis.get("mentors");
+  const cachedMentors = await redis.get(`mentors:${filters}${take}${skip}`);
 
   // Declare mentors variable
   let mentors;
@@ -62,7 +62,12 @@ export default async function MentorsSection({
     });
 
     // Cache the fetched data with a TTL of 1800 seconds (30 minutes)
-    await redis.set("mentors", JSON.stringify(mentors), "EX", 1800);
+    await redis.set(
+      `mentors:${filters}${take}${skip}`,
+      JSON.stringify(mentors),
+      "EX",
+      300,
+    );
   }
 
   // Try to get cached mentors count

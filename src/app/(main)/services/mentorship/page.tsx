@@ -27,7 +27,7 @@ export default async function MentorPage({
     domain,
     fieldOfStudy,
     page: page ?? "1",
-    perPage: perPage ?? "8",
+    perPage: perPage ?? "1",
   };
 
   // JSX
