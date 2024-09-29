@@ -3,6 +3,13 @@ import MentorsFilters from "./MentorFilters";
 import MentorsSection from "./MentorsSection";
 import { FilterMentors } from "@/lib/filterValidations";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+// METADATA
+export const metadata: Metadata = {
+  title: "Mentors",
+  description: "Find mentors to guide you in your career",
+};
 
 // MENTOR PAGE PROPS
 interface MentorPageProps {

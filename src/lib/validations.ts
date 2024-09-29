@@ -162,7 +162,9 @@ export const createEventSchema = z.object({
     .max(100, "Location must not exceed 100 characters"),
   date: z.date().min(new Date(), "Date must be in the future"),
   type: z.enum(["workshop", "seminar", "conference", "webinar", "reunion"]),
-  time: z.string().trim().min(1, "Time is required"),
+  time: z
+    .string()
+    .regex(/^([0-1]\d|2[0-3]):([0-5]\d)$/, "Invalid time format"),
   registrationLink: z
     .string()
     .trim()

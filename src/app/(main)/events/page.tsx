@@ -1,6 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import EventsHeroSection from "./HeroSection";
 import AddEventButton from "./AddEventButton";
+import AllEvents from "./AllEvents";
+import Reunions from "./Reunions";
 
 // EVENTS PAGE
 export default function EventsPage() {
@@ -10,10 +12,10 @@ export default function EventsPage() {
       <div>
         <h2 className="mb-4 text-3xl font-semibold">Events Page</h2>
       </div>
-      <div className="w-full">
-        <Tabs defaultValue="all">
-          <TabsList className="flex w-full">
-            <TabsTrigger value="all" className="flex-1 text-center">
+      <div className="md:w-full">
+        <Tabs defaultValue="all-events">
+          <TabsList className="md:w-full">
+            <TabsTrigger value="all-events" className="flex-1 text-center">
               All
             </TabsTrigger>
             <TabsTrigger value="reunions" className="flex-1 text-center">
@@ -28,15 +30,12 @@ export default function EventsPage() {
             <TabsTrigger value="seminars" className="flex-1 text-center">
               Seminars
             </TabsTrigger>
-            <TabsTrigger value="conferences" className="flex-1 text-center">
-              Conferences
-            </TabsTrigger>
           </TabsList>
-          <TabsContent value="all">
-            {/* <AllEvernts /> */}
+          <TabsContent value="all-events">
+            <AllEvents />
           </TabsContent>
           <TabsContent value="reunions">
-            {/* <Reunions /> */}
+            <Reunions />
           </TabsContent>
           <TabsContent value="webinars">
             {/* <Webinars /> */}
@@ -46,9 +45,6 @@ export default function EventsPage() {
           </TabsContent>
           <TabsContent value="seminars">
             {/* <Seminars /> */}
-          </TabsContent>
-          <TabsContent value="conferences">
-            {/* <Conferences /> */}
           </TabsContent>
         </Tabs>
       </div>

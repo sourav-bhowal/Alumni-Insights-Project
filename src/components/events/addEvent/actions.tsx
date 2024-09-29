@@ -15,9 +15,10 @@ export async function createEvent(inputValues: {
     type: string;
     time: string;
     registrationLink?: string;
+    mediaIds?: string[];
   };
-  mediaIds: string[];
 }) {
+  // console.log("createEvent", inputValues);
   // GET USER FROM SESSION
   const { user } = await validateRequest();
 
@@ -25,7 +26,7 @@ export async function createEvent(inputValues: {
   if (!user) throw Error("Unauthorized");
 
   // IF USER IS NOT ADMIN
-  if (!user.isAdmin) throw Error("Unauthorized");
+  if (!user.isAlumni) throw Error("Unauthorized");
 
   // VALIDATE INPUT VALUES
   const {
@@ -37,7 +38,7 @@ export async function createEvent(inputValues: {
     time,
     registrationLink,
     mediaIds,
-  } = createEventSchema.parse(inputValues);
+  } = createEventSchema.parse(inputValues.event);
 
   // CREATE EVENT
   const newEvent = await prisma.event.create({

@@ -33,6 +33,24 @@ const services = [
   },
 ];
 
+const alumni = [
+  {
+    title: "Alumni Directory",
+    href: "/alumni/directory",
+    description: "Find and connect with other alumni",
+  },
+  {
+    title: "Alumni Stories",
+    href: "/alumni/stories",
+    description: "Read about the success of our alumni",
+  },
+  {
+    title: "Events",
+    href: "/events",
+    description: "Join our upcoming events",
+  },
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -66,11 +84,20 @@ export default function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/alumni" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Alumni Community
-                  </NavigationMenuLink>
-                </Link>
+                <NavigationMenuTrigger>Alumni Community</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                    {alumni.map((alum) => (
+                      <ListItem
+                        key={alum.title}
+                        title={alum.title}
+                        href={alum.href}
+                      >
+                        {alum.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/contact" legacyBehavior passHref>

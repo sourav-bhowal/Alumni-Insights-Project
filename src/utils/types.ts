@@ -74,6 +74,7 @@ export function getEventData(loggedInUserId: string) {
     user: {
       select: getUserData(loggedInUserId),
     },
+    attachments: true,
   } satisfies Prisma.EventInclude;
 }
 

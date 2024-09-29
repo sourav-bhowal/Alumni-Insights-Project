@@ -7,6 +7,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { ReferJobPage } from "@/utils/types";
 import ReferJobCard from "./ReferJobCard";
 import { FilterReferJob } from "@/lib/filterValidations";
+import JobInternshipLoadingSkel from "@/components/shared/Job-InternshipLoadingSkeleton";
 
 // REFER JOBS SECTION
 export default function ReferJobsSection({
@@ -68,7 +69,7 @@ export default function ReferJobsSection({
   if (status === "pending" || isLoading) {
     return (
       <div className="flex w-full items-center justify-center">
-        <Loader2 className="animate-spin" />
+        <JobInternshipLoadingSkel />
       </div>
     );
   }

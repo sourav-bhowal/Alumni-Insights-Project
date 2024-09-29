@@ -27,6 +27,7 @@ export function useCreateEventMutation() {
         queryKey: ["all-events"],
         predicate(query) {
           return (
+            query.queryKey.includes("all-events") ||
             query.queryKey.includes("webinars") ||
             query.queryKey.includes("workshops") ||
             query.queryKey.includes("reunions") ||

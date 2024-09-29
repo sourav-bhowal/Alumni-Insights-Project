@@ -123,7 +123,7 @@ model Attachment {
   id        String    @id @default(cuid())
   url       String
   projectId String?
-  project   Project?  @relation(fields: [projectId], references: [id])
+  project   Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   eventId   String?
   event     Event?    @relation(fields: [eventId], references: [id], onDelete: Cascade)
   newsId    String?
@@ -166,7 +166,7 @@ model Event {
   time             String
   type             String
   userId           String
-  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user             User         @relation(fields: [userId], references: [id])
   attachments      Attachment[]
   location         String
   registrationLink String?
@@ -180,7 +180,7 @@ model Event {
 model ReferInternship {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
   title     String
   company   String
   location  String
@@ -200,7 +200,7 @@ model ReferInternship {
 model ReferJob {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
   title     String
   company   String
   location  String

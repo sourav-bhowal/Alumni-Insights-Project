@@ -4,6 +4,13 @@ import ReferJobsFilters from "./Filters";
 import { FilterIcon } from "lucide-react";
 import AddReferJobButton from "./AddReferJobButton";
 import { FilterReferJob } from "@/lib/filterValidations";
+import { Metadata } from "next";
+
+// METADATA
+export const metadata: Metadata = {
+  title: "Find Jobs",
+  description: "Find jobs refered by your alumni",
+};
 
 // INTERFACE
 interface ReferJobsPageProps {
@@ -46,7 +53,7 @@ export default function ReferJobsPage({
       {/* Add job display components here */}
       <ReferJobsSection filterValues={referJobFilterValues} />
     </div>
-    <AddReferJobButton />
+    {/* <AddReferJobButton /> */}
   </div>
   );
 }
