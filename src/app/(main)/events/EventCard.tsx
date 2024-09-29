@@ -1,8 +1,11 @@
 import { useSession } from "@/context/SessionProvider";
 import { EventData } from "@/utils/types";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import hero100 from "@/assets/hero100.jpg";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Calendar, Clock, MapPin } from "lucide-react";
 
 // INTERFACE FOR EVENTCARD
 interface EventCardProps {
@@ -15,7 +18,7 @@ export default function EventCard({ event }: EventCardProps) {
   const { user: loggedInUser } = useSession();
   // JSX
   return (
-    <Card className="h-[200px] overflow-hidden">
+    <Card className="h-[250px] overflow-hidden">
       <div className="flex h-full w-full">
         <div className="relative h-full w-1/3">
           {event.attachments.length > 0 ? (
@@ -24,6 +27,7 @@ export default function EventCard({ event }: EventCardProps) {
               alt={event.title}
               layout="fill"
               objectFit="cover"
+              priority
             />
           ) : (
             <Image
@@ -47,11 +51,39 @@ export default function EventCard({ event }: EventCardProps) {
               {event.description}
             </p>
           </div>
-          <p className="mb-1 text-sm text-gray-600">{event.location}</p>
-          <p className="text-sm text-gray-600">
-            {new Date(event.date).toDateString()}
-          </p>
-          <p className="text-sm text-gray-600">{event.time}</p>
+          <div className="flex flex-col gap-2">
+            <p className="mb-1 flex items-center text-sm capitalize text-gray-600">
+              <MapPin size={16} className="mr-1 inline text-primary" />
+              {event.location}
+            </p>
+            <p className="flex items-center text-sm text-gray-600">
+              <Calendar size={16} className="mr-1 inline text-primary" />
+              {new Date(event.date).toDateString()}
+            </p>
+            <p className="flex items-center text-sm text-gray-600">
+              <Clock size={16} className="mr-1 inline text-primary" />
+              {event.time}
+            </p>
+          </div>
+          <div className="absolute bottom-3 left-4">
+            <Button
+              className="mt-6 rounded-sm bg-black hover:bg-muted"
+              size={"sm"}
+            >
+              {event.type}
+            </Button>
+          </div>
+          <div className="absolute bottom-3 right-4">
+            {event.registrationLink ? (
+              <Link href={event.registrationLink}>
+                <Button className="mt-6" size={"sm"}>
+                  Register
+                </Button>
+              </Link>
+            ) : (
+              <Button>For All</Button>
+            )}
+          </div>
         </CardContent>
       </div>
     </Card>

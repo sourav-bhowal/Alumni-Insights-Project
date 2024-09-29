@@ -28,6 +28,7 @@ export default function AllEvents() {
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
 
+  // EVENTS
   const events = data?.pages.flatMap((page) => page.events) || [];
 
   // RENDERING EVENTS
