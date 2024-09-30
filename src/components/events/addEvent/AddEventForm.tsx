@@ -320,6 +320,17 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
                   {!!medias.length && (
                     <MediaPreviews medias={medias} removeMedia={removeMedia} />
                   )}
+                  {!!medias.length && (
+                    <>
+                      {form.setValue(
+                        "mediaIds",
+                        medias
+                          .map((media) => media?.mediaId)
+                          .filter((id) => id !== undefined),
+                      )}
+                      {console.log(form.getValues("mediaIds"))}
+                    </>
+                  )}
                 </div>
                 {isUploading && (
                   <div className="flex items-center justify-center space-x-2">

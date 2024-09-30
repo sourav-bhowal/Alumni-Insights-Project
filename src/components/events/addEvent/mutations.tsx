@@ -23,19 +23,12 @@ export function useCreateEventMutation() {
     // ON SUCCESS
     onSuccess: async (newEvent) => {
       // filter the posts as per query key
-      const queryFilter = {
+      const queryFilter: QueryFilters = {
         queryKey: ["all-events"],
         predicate(query) {
-          return (
-            query.queryKey.includes("all-events") ||
-            query.queryKey.includes("webinars") ||
-            query.queryKey.includes("workshops") ||
-            query.queryKey.includes("reunions") ||
-            query.queryKey.includes("conferences") ||
-            query.queryKey.includes("seminars")
-          );
+          return query.queryKey[0] === "all-events";
         },
-      } satisfies QueryFilters;
+      };
       // cancel refetch
       queryClient.cancelQueries(queryFilter);
       // set query manually
@@ -61,7 +54,7 @@ export function useCreateEventMutation() {
       queryClient.invalidateQueries({
         queryKey: queryFilter.queryKey,
         predicate(query) {
-          return queryFilter.predicate(query) && !query.state.data;
+          return query.queryKey[0] === "all-events";
         },
       });
       // show toast

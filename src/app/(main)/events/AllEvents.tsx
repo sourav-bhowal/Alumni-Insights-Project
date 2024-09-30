@@ -5,6 +5,7 @@ import { EventPage } from "@/utils/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import EventCard from "./EventCard";
+import EventCardSkeleton from "@/components/shared/EventCardLoadingSkeleton";
 
 // ALL EVENTS PAGE
 export default function AllEvents() {
@@ -33,7 +34,7 @@ export default function AllEvents() {
 
   // RENDERING EVENTS
   if (status === "pending") {
-    return <Loader2 className="mx-auto my-3 animate-spin" />;
+    return <EventCardSkeleton />;
   }
 
   // IF THERE ARE NO EVENTS
