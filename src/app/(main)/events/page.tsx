@@ -3,6 +3,13 @@ import EventsHeroSection from "./HeroSection";
 import AddEventButton from "./AddEventButton";
 import AllEvents from "./AllEvents";
 import Reunions from "./Reunions";
+import { Metadata } from "next";
+
+// METADATA
+export const metadata: Metadata = {
+  title: "Events",
+  description: "Find events to attend",
+};
 
 // EVENTS PAGE
 export default function EventsPage() {
@@ -48,7 +55,7 @@ export default function EventsPage() {
           </TabsContent>
         </Tabs>
       </div>
-      <AddEventButton />
+      {/* <AddEventButton /> */}
     </main>
   );
 }

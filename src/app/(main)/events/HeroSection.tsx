@@ -1,20 +1,22 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import python from "@/assets/python.jpg";
 import hero100 from "@/assets/hero100.jpg";
+import coding from "@/assets/coding.jpg";
 
 // Array of hero images with src and title
 const heroImages = [
   {
-    src: hero100,
-    title: "Hands-on with Python for Data Science",
+    src: python,
+    title: "Hands-on tutorial with Python for Data Science",
   },
   {
     src: hero100,
     title: "15th Year Alumni Reunion 2009 Batch",
   },
   {
-    src: hero100,
+    src: coding,
     title: "Coding Bootcamp for Beginners with Python",
   },
   {
@@ -45,7 +47,7 @@ export default function EventsHeroSection() {
   }, []);
   // Return the hero section with hero images and buttons
   return (
-    <div className="relative mb-8 h-[400px] sm:h-[600px] overflow-hidden rounded-xl">
+    <div className="relative mb-8 h-[400px] overflow-hidden rounded-xl sm:h-[600px]">
       {heroImages.map((image, index) => (
         <div
           key={index}
@@ -53,14 +55,9 @@ export default function EventsHeroSection() {
             index === currentHeroIndex ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Image
-            src={image.src}
-            alt={image.title}
-            layout="fill"
-            objectFit="cover"
-          />
+          <Image src={image.src} alt={image.title} className="object-fill" />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <h1 className="max-w-xs sm:max-w-4xl text-center text-3xl sm:text-6xl font-bold text-white">
+            <h1 className="max-w-xs text-center text-3xl font-bold text-white sm:max-w-4xl sm:text-6xl">
               {image.title}
             </h1>
           </div>
