@@ -66,55 +66,56 @@ function Features() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    // <div
-    //   onMouseEnter={() => setIsOpen(true)}
-    //   onMouseLeave={() => setIsOpen(false)}
-    // >
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger asChild>
-        <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/30">
-          Resources{" "}
-          {isOpen ? (
-            <ChevronUp className="ml-1 h-4 w-4" />
-          ) : (
-            <ChevronDown className="ml-1 h-4 w-4" />
-          )}
-        </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
-          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-        }`}
-      >
-        <div className="flex flex-col">
-          {services.map((service, index) => (
-            <div key={index} className="space-y-2">
-              <Link href={service.href}>
-                <DropdownMenuItem
-                  key={service.title}
-                  className="group/fea flex cursor-pointer items-start rounded-lg p-2"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg border-foreground bg-background text-foreground duration-500 group-hover/fea:bg-foreground group-hover/fea:text-background">
-                      {service.icon}
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-white">
-                        {service.title}
+    <div
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      className="flex items-center"
+    >
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenuTrigger asChild>
+          <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/50">
+            Resources{" "}
+            {isOpen ? (
+              <ChevronUp className="ml-1 h-4 w-4" />
+            ) : (
+              <ChevronDown className="ml-1 h-4 w-4" />
+            )}
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+            isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col">
+            {services.map((service, index) => (
+              <div key={index} className="space-y-2">
+                <Link href={service.href}>
+                  <DropdownMenuItem
+                    key={service.title}
+                    className="group/fea flex cursor-pointer items-start rounded-lg p-2"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg border-foreground bg-background text-foreground duration-500 group-hover/fea:bg-foreground group-hover/fea:text-background">
+                        {service.icon}
                       </div>
-                      <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
-                        {service.description}
-                      </p>
+                      <div>
+                        <div className="text-sm font-medium text-white">
+                          {service.title}
+                        </div>
+                        <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
-    // </div>
+                  </DropdownMenuItem>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 }
 
@@ -123,55 +124,56 @@ function Community() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    // <div
-    //   onMouseEnter={() => setIsOpen(true)}
-    //   onMouseLeave={() => setIsOpen(false)}
-    // >
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger asChild>
-        <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted">
-          Community{" "}
-          {isOpen ? (
-            <ChevronUp className="ml-1 h-4 w-4" />
-          ) : (
-            <ChevronDown className="ml-1 h-4 w-4" />
-          )}
-        </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
-          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-        }`}
-      >
-        <div className="flex flex-col">
-          {alumni.map((service, index) => (
-            <div key={index} className="space-y-2">
-              <Link href={service.href}>
-                <DropdownMenuItem
-                  key={service.title}
-                  className="group/fea flex cursor-pointer items-start rounded-lg p-2"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg border-foreground bg-background text-foreground duration-500 group-hover/fea:bg-foreground group-hover/fea:text-background">
-                      {service.icon}
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-white">
-                        {service.title}
+    <div
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      className="flex items-center"
+    >
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenuTrigger asChild>
+          <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/50">
+            Community{" "}
+            {isOpen ? (
+              <ChevronUp className="ml-1 h-4 w-4" />
+            ) : (
+              <ChevronDown className="ml-1 h-4 w-4" />
+            )}
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+            isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col">
+            {alumni.map((service, index) => (
+              <div key={index} className="space-y-2">
+                <Link href={service.href}>
+                  <DropdownMenuItem
+                    key={service.title}
+                    className="group/fea flex cursor-pointer items-start rounded-lg p-2"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg border-foreground bg-background text-foreground duration-500 group-hover/fea:bg-foreground group-hover/fea:text-background">
+                        {service.icon}
                       </div>
-                      <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
-                        {service.description}
-                      </p>
+                      <div>
+                        <div className="text-sm font-medium text-white">
+                          {service.title}
+                        </div>
+                        <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
-    // </div>
+                  </DropdownMenuItem>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 }
 
@@ -184,12 +186,23 @@ export default function NavbarLinks() {
       <div className="flex items-center justify-between">
         <nav className="hidden gap-2 md:flex">
           <Link href={"/"}>
-            <Button variant="ghost" className="text-foreground">
+            <Button
+              variant="ghost"
+              className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/50"
+            >
               Home
             </Button>
           </Link>
           <Features />
           <Community />
+          <Link href={"/contact"}>
+            <Button
+              variant="ghost"
+              className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/50"
+            >
+              Contact
+            </Button>
+          </Link>
         </nav>
         {/* SHEET */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
