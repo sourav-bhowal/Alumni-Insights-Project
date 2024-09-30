@@ -1,35 +1,42 @@
 "use client";
 import * as React from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Outdent, PinIcon } from "lucide-react";
+import {
+  Briefcase,
+  Laptop,
+  Menu,
+  School,
+  Scroll,
+  Users2Icon,
+} from "lucide-react";
+import { ChevronDown, ChevronUp, Bell } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const services = [
   {
     title: "Jobs",
     href: "/services/jobs",
     description: "Find your next career opportunity",
+    icon: <Briefcase />,
   },
   {
     title: "Internships",
     href: "/services/internships",
     description: "Gain valuable work experience",
+    icon: <Laptop />,
   },
   {
     title: "Mentorship",
     href: "/services/mentorship",
     description: "Connect with industry professionals",
+    icon: <Users2Icon />,
   },
 ];
 
@@ -38,77 +45,153 @@ const alumni = [
     title: "Alumni Directory",
     href: "/alumni/directory",
     description: "Find and connect with other alumni",
+    icon: <School />,
   },
   {
-    title: "Alumni Stories",
-    href: "/alumni/stories",
+    title: "Hall of Fame",
+    href: "/alumni/hof",
     description: "Read about the success of our alumni",
+    icon: <Scroll />,
   },
   {
     title: "Events",
     href: "/events",
     description: "Join our upcoming events",
+    icon: <Bell />,
   },
 ];
 
-export default function Navbar() {
+// FEATURES
+function Features() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    // <div
+    //   onMouseEnter={() => setIsOpen(true)}
+    //   onMouseLeave={() => setIsOpen(false)}
+    // >
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+      <DropdownMenuTrigger asChild>
+        <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/30">
+          Resources{" "}
+          {isOpen ? (
+            <ChevronUp className="ml-1 h-4 w-4" />
+          ) : (
+            <ChevronDown className="ml-1 h-4 w-4" />
+          )}
+        </div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col">
+          {services.map((service, index) => (
+            <div key={index} className="space-y-2">
+              <Link href={service.href}>
+                <DropdownMenuItem
+                  key={service.title}
+                  className="group/fea flex cursor-pointer items-start rounded-lg p-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg border-foreground bg-background text-foreground duration-500 group-hover/fea:bg-foreground group-hover/fea:text-background">
+                      {service.icon}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-white">
+                        {service.title}
+                      </div>
+                      <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    // </div>
+  );
+}
+
+//
+function Community() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    // <div
+    //   onMouseEnter={() => setIsOpen(true)}
+    //   onMouseLeave={() => setIsOpen(false)}
+    // >
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+      <DropdownMenuTrigger asChild>
+        <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted">
+          Community{" "}
+          {isOpen ? (
+            <ChevronUp className="ml-1 h-4 w-4" />
+          ) : (
+            <ChevronDown className="ml-1 h-4 w-4" />
+          )}
+        </div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col">
+          {alumni.map((service, index) => (
+            <div key={index} className="space-y-2">
+              <Link href={service.href}>
+                <DropdownMenuItem
+                  key={service.title}
+                  className="group/fea flex cursor-pointer items-start rounded-lg p-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg border-foreground bg-background text-foreground duration-500 group-hover/fea:bg-foreground group-hover/fea:text-background">
+                      {service.icon}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-white">
+                        {service.title}
+                      </div>
+                      <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    // </div>
+  );
+}
+
+// navbar
+export default function NavbarLinks() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <header className="">
-      <div className="container flex items-center justify-between">
-        <nav className="hidden md:flex">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Home
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    {services.map((service) => (
-                      <ListItem
-                        key={service.title}
-                        title={service.title}
-                        href={service.href}
-                      >
-                        {service.description}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Alumni Community</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    {alumni.map((alum) => (
-                      <ListItem
-                        key={alum.title}
-                        title={alum.title}
-                        href={alum.href}
-                      >
-                        {alum.description}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Contact
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+      <div className="flex items-center justify-between">
+        <nav className="hidden gap-2 md:flex">
+          <Link href={"/"}>
+            <Button variant="ghost" className="text-foreground">
+              Home
+            </Button>
+          </Link>
+          <Features />
+          <Community />
         </nav>
+        {/* SHEET */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="md:hidden">
             <Button variant="outline" size="icon">
@@ -159,29 +242,3 @@ export default function Navbar() {
     </header>
   );
 }
-
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className,
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = "ListItem";

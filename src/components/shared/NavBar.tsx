@@ -6,7 +6,7 @@ import NavbarLinks from "./NavBarLinks";
 // NAVBAR COMPONENT
 export default function NavBar() {
   return (
-    <header className="sticky top-0 z-50 bg-card shadow-sm">
+    <header className="sticky top-0 z-50 bg-card/50 backdrop-blur shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-2 sm:py-3">
         <div className="flex w-full items-center justify-between md:w-auto">
           <UserButton className="sm:ms-auto md:hidden" />
@@ -21,7 +21,7 @@ export default function NavBar() {
         <div className="hidden md:flex items-center">
           <UserButton className="sm:ms-auto" />
         </div>
-        <div className="block items-center justify-center md:hidden">
+        <div className="block md:hidden">
           <NavbarLinks />
         </div>
       </div>
