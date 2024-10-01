@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import InfiniteScrollContainer from "@/components/shared/InfiniteScrollContainer";
 import { kyInstance } from "@/utils/ky";
 import { Loader2 } from "lucide-react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { ReferJobPage } from "@/utils/types";
 import ReferJobCard from "./ReferJobCard";
 import { FilterReferJob } from "@/lib/filterValidations";
@@ -15,9 +15,6 @@ export default function ReferJobsSection({
 }: {
   filterValues: FilterReferJob;
 }) {
-  // LOADING STATE
-  const [isLoading, setIsLoading] = useState(false);
-
   // USE INFINITE QUERY
   const {
     data,
@@ -28,7 +25,7 @@ export default function ReferJobsSection({
     status,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["refer-jobs"],
+    queryKey: ["refer-jobs", filterValues],
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
@@ -40,33 +37,19 @@ export default function ReferJobsSection({
         .json<ReferJobPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
-  // USE EFFECT TO FILTER JOBS BASED ON FILTER VALUES
+  // USE EFFECT TO REFETCH DATA ON FILTER CHANGE
   useEffect(() => {
-    const filterJobs = async () => {
-      setIsLoading(true);
-      const response = await kyInstance.get("/api/refer-jobs/get-refer-jobs/", {
-        searchParams: filterValues,
-      });
-      const filteredData = await response.json();
-      setIsLoading(false);
-      return filteredData;
-    };
-
-    // FILTER JOBS AND REFETCH
-    filterJobs().then((filteredData) => {
-      // Handle the filtered data if needed
-      // console.log(filteredData);
-      refetch();
-    });
+    refetch();
   }, [filterValues, refetch]);
 
   // FLAT MAP REFER JOBS
   const referJobs = data?.pages.flatMap((page) => page.referJobs) || [];
 
   // RENDERING POSTS
-  if (status === "pending" || isLoading) {
+  if (status === "pending") {
     return (
       <div className="flex w-full items-center justify-center">
         <JobInternshipLoadingSkel />

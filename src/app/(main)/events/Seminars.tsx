@@ -8,7 +8,7 @@ import EventCard from "./EventCard";
 import EventCardSkeleton from "@/components/shared/EventCardLoadingSkeleton";
 
 // ALL EVENTS PAGE
-export default function Reunions() {
+export default function Seminars() {
   const {
     data,
     fetchNextPage,
@@ -17,11 +17,11 @@ export default function Reunions() {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["all-events", "reunions"],
+    queryKey: ["all-events", "seminars"],
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/events/get-reunions",
+          "/api/events/get-seminars",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<EventPage>(),
@@ -31,7 +31,7 @@ export default function Reunions() {
   });
 
   // EVENTS
-  const reunions = data?.pages.flatMap((page) => page.events) || [];
+  const seminars = data?.pages.flatMap((page) => page.events) || [];
 
   // RENDERING EVENTS
   if (status === "pending") {
@@ -39,7 +39,7 @@ export default function Reunions() {
   }
 
   // IF THERE ARE NO EVENTS
-  if (status === "success" && !reunions.length && !hasNextPage) {
+  if (status === "success" && !seminars.length && !hasNextPage) {
     return <p className="text-center text-muted-foreground">No Reunion events yet.</p>;
   }
 
@@ -59,7 +59,7 @@ export default function Reunions() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {reunions.map((event) => (
+        {seminars.map((event) => (
           <EventCard key={event.id} event={event} />
         ))}
       </div>

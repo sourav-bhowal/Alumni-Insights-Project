@@ -196,7 +196,6 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
                           <option value="">Select type of event</option>
                           <option value="workshop">Workshop</option>
                           <option value="webinar">Webinar</option>
-                          <option value="conference">Conference</option>
                           <option value="seminar">Seminar</option>
                           <option value="reunion">Reunion</option>
                         </Select>

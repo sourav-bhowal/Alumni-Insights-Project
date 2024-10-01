@@ -27,6 +27,7 @@ export default function AllEvents() {
         .json<EventPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
   // EVENTS

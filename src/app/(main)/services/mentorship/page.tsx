@@ -4,6 +4,7 @@ import MentorsSection from "./MentorsSection";
 import { FilterMentors } from "@/lib/filterValidations";
 import { Suspense } from "react";
 import { Metadata } from "next";
+import MentorsSectionWithSuspense from "./MentorsSection";
 
 // METADATA
 export const metadata: Metadata = {
@@ -53,9 +54,7 @@ export default async function MentorPage({
       <div className="w-full p-4">
         <h2 className="mb-4 text-lg font-semibold">Our Mentors</h2>
         {/* Add mentors display components here */}
-        <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-          <MentorsSection filterValues={mentorFilterValues} />
-        </Suspense>
+        <MentorsSectionWithSuspense {...mentorFilterValues}  />
       </div>
     </main>
   );

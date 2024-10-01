@@ -4,6 +4,9 @@ import AddEventButton from "./AddEventButton";
 import AllEvents from "./AllEvents";
 import Reunions from "./Reunions";
 import { Metadata } from "next";
+import Webinars from "./Webinars";
+import Workshops from "./Workshops";
+import Seminars from "./Seminars";
 
 // METADATA
 export const metadata: Metadata = {
@@ -45,13 +48,13 @@ export default function EventsPage() {
             <Reunions />
           </TabsContent>
           <TabsContent value="webinars">
-            {/* <Webinars /> */}
+            <Webinars />
           </TabsContent>
           <TabsContent value="workshops">
-            {/* <Workshops /> */}
+            <Workshops />
           </TabsContent>
           <TabsContent value="seminars">
-            {/* <Seminars /> */}
+            <Seminars />
           </TabsContent>
         </Tabs>
       </div>

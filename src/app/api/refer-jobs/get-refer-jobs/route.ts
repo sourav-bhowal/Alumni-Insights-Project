@@ -9,15 +9,16 @@ export async function GET(req: NextRequest) {
     // SEARCH PARAMS
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
     const q = req.nextUrl.searchParams.get("q") || "";
+    const workType = req.nextUrl.searchParams.get("workType") || "";
+    const location = req.nextUrl.searchParams.get("location") || "";
+    const jobType = req.nextUrl.searchParams.get("jobType") || "";
+    const salary = req.nextUrl.searchParams.get("salary") || "";
+
     // SEARCH STRING
     const searchString = q
       ?.split(" ")
       .filter((word) => word.length > 0)
       .join(" & ");
-    const workType = req.nextUrl.searchParams.get("workType") || "";
-    const location = req.nextUrl.searchParams.get("location") || "";
-    const jobType = req.nextUrl.searchParams.get("jobType") || "";
-    const salary = req.nextUrl.searchParams.get("salary") || "";
 
     // PAGE SIZE
     const pageSize = 5;
@@ -67,6 +68,7 @@ export async function GET(req: NextRequest) {
       nextCursor,
     });
   } catch (error) {
+    // HANDLE ERRORS
     console.error(error);
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }

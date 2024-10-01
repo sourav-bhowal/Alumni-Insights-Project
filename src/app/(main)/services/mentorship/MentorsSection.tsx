@@ -4,6 +4,8 @@ import { FilterMentors } from "@/lib/filterValidations";
 import { Pagination } from "./pagination";
 import { redis } from "@/lib/redis";
 import { User } from "@prisma/client";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
 
 // INTERFACE FOR MENTOR LIST
 interface MentorsSectionProps {
@@ -11,7 +13,7 @@ interface MentorsSectionProps {
 }
 
 // MENTORS SECTION
-export default async function MentorsSection({
+async function MentorsSection({
   filterValues: { q, location, domain, fieldOfStudy, page, perPage },
 }: MentorsSectionProps) {
   // search string
@@ -46,6 +48,7 @@ export default async function MentorsSection({
   // Declare mentors variable
   let mentors;
 
+  // Check if cached mentors exist
   if (cachedMentors) {
     // Parse the cached data if it exists
     mentors = JSON.parse(cachedMentors);
@@ -73,6 +76,7 @@ export default async function MentorsSection({
   // Declare mentorsCount variable
   let mentorsCount;
 
+  // Check if cached mentors count exist
   if (cachedMentorsCount) {
     // Parse the cached data if it exists
     mentorsCount = JSON.parse(cachedMentorsCount);
@@ -110,5 +114,22 @@ export default async function MentorsSection({
         />
       </div>
     </div>
+  );
+}
+
+// MENTORS SECTION WITH SUSPENSE
+export default function MentorsSectionWithSuspense(
+  filterValues: FilterMentors,
+) {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center">
+          <Loader2 size={32} className="animate-spin" />
+        </div>
+      }
+    >
+      <MentorsSection filterValues={filterValues} />
+    </Suspense>
   );
 }
