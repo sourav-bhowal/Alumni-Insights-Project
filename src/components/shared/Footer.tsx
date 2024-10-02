@@ -6,9 +6,9 @@ import { Facebook, Instagram, Linkedin, Mail, SearchIcon } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="mx-4 space-y-10">
+    <footer className="space-y-10">
       <div className="h-px flex-1 bg-muted" />
-      <div className="rounded-2xl bg-card py-12 text-white">
+      <div className="rounded-2xl bg-card py-12 dark:text-white text-black">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {/* Get in Touch */}

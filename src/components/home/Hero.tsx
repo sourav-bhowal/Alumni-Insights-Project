@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero.jpg";
 // HERO SECTION
 export default function HeroSection() {
   return (
-    <section className="relative flex h-[80%] min-w-full items-center justify-center overflow-hidden rounded-lg">
+    <section className="relative flex h-[400px] min-w-full items-center justify-center overflow-hidden rounded-lg sm:h-[700px]">
       <div className="absolute inset-0 z-0">
         <Image
           src={heroImage}
@@ -21,7 +21,7 @@ export default function HeroSection() {
         </h1>
         <Button
           size="lg"
-          className="mt-10 rounded-lg border-2 border-primary bg-card text-black dark:text-white hover:bg-primary/90"
+          className="mt-10 rounded-lg border-2 border-primary bg-card text-black hover:bg-primary/90 dark:text-white"
         >
           Explore Community
         </Button>

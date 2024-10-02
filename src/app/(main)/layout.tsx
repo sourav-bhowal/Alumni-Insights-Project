@@ -23,7 +23,7 @@ export default async function MainLayout({
       <div className="flex min-h-screen flex-col">
         {/* SHOW NAVBAR */}
         <NavBar />
-        <div className="mx-auto flex w-full grow flex-col gap-10 md:max-w-[95%] md:gap-[200px] md:p-5">
+        <div className="mx-auto flex w-full grow flex-col gap-10 md:max-w-[95%] md:gap-[200px] md:p-5 p-3">
           {children}
           <Footer />
         </div>

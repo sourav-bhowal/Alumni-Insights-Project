@@ -1,7 +1,6 @@
 import ExploreSection from "@/components/home/Explore";
 import HeroSection from "@/components/home/Hero";
 
-
 // HOME PAGE
 export default function HomePage() {
   return (
@@ -9,5 +8,5 @@ export default function HomePage() {
       <HeroSection />
       <ExploreSection />
     </div>
-  )
+  );
 }

@@ -78,7 +78,7 @@ export default function ExploreSection() {
 
   return (
     <section className="w-full py-12">
-      <div className="container min-w-full">
+      
         <h2 className="mb-4 text-center text-5xl font-bold tracking-wider">
           EXPLORE
         </h2>
@@ -142,7 +142,7 @@ export default function ExploreSection() {
             <span className="sr-only">Scroll right</span>
           </Button>
         </div>
-      </div>
+      
     </section>
   );
 }
