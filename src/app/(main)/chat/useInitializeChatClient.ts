@@ -22,7 +22,7 @@ export default function useInitializeChatClient() {
         {
           id: loggedInUser?.id,
           username: loggedInUser?.username,
-          name: loggedInUser?.name,
+          name: loggedInUser?.displayName,
           image: loggedInUser?.avatarUrl,
         },
         // get token
@@ -50,7 +50,7 @@ export default function useInitializeChatClient() {
   }, [
     loggedInUser.id,
     loggedInUser.username,
-    loggedInUser.name,
+    loggedInUser.displayName,
     loggedInUser.avatarUrl,
   ]);
 

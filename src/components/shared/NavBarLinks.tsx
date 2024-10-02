@@ -5,8 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Briefcase,
+  DollarSign,
   Laptop,
   Menu,
+  MessageCircle,
+  MessageSquare,
+  Newspaper,
   School,
   Scroll,
   Users2Icon,
@@ -38,12 +42,18 @@ const services = [
     description: "Connect with industry professionals",
     icon: <Users2Icon />,
   },
+  {
+    title: "Donations",
+    href: "/services/donations",
+    description: "Donate funds to the project you liked",
+    icon: <DollarSign />,
+  },
 ];
 
 const alumni = [
   {
     title: "Alumni Directory",
-    href: "/alumni/directory",
+    href: "/alumni-community/alumni-directory",
     description: "Find and connect with other alumni",
     icon: <School />,
   },
@@ -61,6 +71,27 @@ const alumni = [
   },
 ];
 
+const connect = [
+  {
+    title: "Chat",
+    href: "/chat",
+    description: "Get in touch with our team",
+    icon: <MessageCircle />,
+  },
+  {
+    title: "Forums",
+    href: "/forums",
+    description: "Join the discussion with other alumni",
+    icon: <MessageSquare />,
+  },
+  {
+    title: "News",
+    href: "/news",
+    description: "Read the latest news and updates from our team",
+    icon: <Newspaper />,
+  },
+];
+
 // FEATURES
 function Features() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -74,7 +105,7 @@ function Features() {
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
           <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/50">
-            Resources{" "}
+            Features{" "}
             {isOpen ? (
               <ChevronUp className="ml-1 h-4 w-4" />
             ) : (
@@ -87,7 +118,7 @@ function Features() {
             isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
-          <div className="flex flex-col">
+          <div className="grid grid-cols-2">
             {services.map((service, index) => (
               <div key={index} className="space-y-2">
                 <Link href={service.href}>
@@ -177,6 +208,65 @@ function Community() {
   );
 }
 
+// CONNECT
+//
+function Connect() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      className="flex items-center"
+    >
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenuTrigger asChild>
+          <div className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/50">
+            Connect{" "}
+            {isOpen ? (
+              <ChevronUp className="ml-1 h-4 w-4" />
+            ) : (
+              <ChevronDown className="ml-1 h-4 w-4" />
+            )}
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+            isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col">
+            {connect.map((service, index) => (
+              <div key={index} className="space-y-2">
+                <Link href={service.href}>
+                  <DropdownMenuItem
+                    key={service.title}
+                    className="group/fea flex cursor-pointer items-start rounded-lg p-2"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg border-foreground bg-background text-foreground duration-500 group-hover/fea:bg-foreground group-hover/fea:text-background">
+                        {service.icon}
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-white">
+                          {service.title}
+                        </div>
+                        <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}
+
 // navbar
 export default function NavbarLinks() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -195,6 +285,7 @@ export default function NavbarLinks() {
           </Link>
           <Features />
           <Community />
+          <Connect />
           <Link href={"/contact"}>
             <Button
               variant="ghost"

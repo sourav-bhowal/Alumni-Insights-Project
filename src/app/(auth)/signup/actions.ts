@@ -1,6 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-// import streamServer from "@/lib/stream";
+import streamServer from "@/lib/stream";
 import { signUpSchema, SignUpSchemaType } from "@/lib/validations"
 import { lucia } from "@/lib/auth";
 import { hash } from "@node-rs/argon2";
@@ -69,11 +69,11 @@ export async function signUp(
         },
       });
       // STREAM USER
-      // await streamServer.upsertUser({
-      //   id: userId,
-      //   username,
-      //   name: username,
-      // });
+      await streamServer.upsertUser({
+        id: userId,
+        username,
+        name: username,
+      });
     });
 
     // CREATE SESSION

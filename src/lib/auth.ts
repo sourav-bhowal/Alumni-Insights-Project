@@ -9,7 +9,7 @@ import { Google } from "arctic";
 interface DatabaseUserAttributes {
   id: string;
   username: string;
-  name: string;
+  displayName: string;
   avatarUrl: string | null;
   googleId: string | null;
   isAdmin: boolean;
@@ -47,7 +47,7 @@ export const lucia = new Lucia(adapter, {
     return {
       id: databaseUserAttributes.id,
       username: databaseUserAttributes.username,
-      name: databaseUserAttributes.name,
+      displayName: databaseUserAttributes.displayName,
       avatarUrl: databaseUserAttributes.avatarUrl,
       googleId: databaseUserAttributes.googleId,
       isAdmin: databaseUserAttributes.isAdmin,

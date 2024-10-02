@@ -1,4 +1,3 @@
-import React from "react";
 import ReferJobsSection from "./ReferJobsSection";
 import ReferJobsFilters from "./Filters";
 import { FilterIcon } from "lucide-react";

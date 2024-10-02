@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-// import streamServer from "@/lib/stream";
+import streamServer from "@/lib/stream";
 import { validateRequest } from "@/lib/auth";
 import { createUploadthing, FileRouter } from "uploadthing/next";
 import { UploadThingError, UTApi } from "uploadthing/server";
@@ -57,12 +57,12 @@ export const fileRouter = {
           },
         }),
         // update stream server avatar url
-        // streamServer.partialUpdateUser({
-        //   id: metadata.user.id,
-        //   set: {
-        //     image: newAvatarUrl,
-        //   },
-        // }),
+        streamServer.partialUpdateUser({
+          id: metadata.user.id,
+          set: {
+            image: newAvatarUrl,
+          },
+        }),
       ]);
 
       // return new avatar url to client

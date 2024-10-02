@@ -47,10 +47,9 @@ export const Pagination = (props: PaginationProps) => {
         href={`?page=${currentPage - 1}`}
       >
         <ArrowLeft size={16} />
-        Previous
       </Link>
 
-      <nav
+      {/* <nav
         aria-label="Pagination"
         className="relative z-0 hidden gap-2 -space-x-px rounded-md md:inline-flex"
       >
@@ -68,7 +67,7 @@ export const Pagination = (props: PaginationProps) => {
             {p}
           </Link>
         ))}
-      </nav>
+      </nav> */}
 
       <Link
         className={cn(
@@ -77,7 +76,6 @@ export const Pagination = (props: PaginationProps) => {
         )}
         href={`?page=${currentPage + 1}`}
       >
-        Next
         <ArrowRight size={16} />
       </Link>
     </div>

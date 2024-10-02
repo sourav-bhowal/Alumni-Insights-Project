@@ -1,8 +1,6 @@
-import { FilterIcon, Loader2 } from "lucide-react";
+import { FilterIcon } from "lucide-react";
 import MentorsFilters from "./MentorFilters";
-import MentorsSection from "./MentorsSection";
 import { FilterMentors } from "@/lib/filterValidations";
-import { Suspense } from "react";
 import { Metadata } from "next";
 import MentorsSectionWithSuspense from "./MentorsSection";
 
@@ -35,7 +33,7 @@ export default async function MentorPage({
     domain,
     fieldOfStudy,
     page: page ?? "1",
-    perPage: perPage ?? "1",
+    perPage: perPage ?? "12",
   };
 
   // JSX
@@ -52,7 +50,7 @@ export default async function MentorPage({
 
       {/* Right side div for displaying jobs */}
       <div className="w-full p-4">
-        <h2 className="mb-4 text-lg font-semibold">Our Mentors</h2>
+        {/* <h2 className="mb-4 text-lg font-semibold">Our Mentors</h2> */}
         {/* Add mentors display components here */}
         <MentorsSectionWithSuspense {...mentorFilterValues}  />
       </div>

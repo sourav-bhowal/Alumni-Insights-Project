@@ -28,6 +28,12 @@ export type UserData = Prisma.UserGetPayload<{
   select: ReturnType<typeof getUserData>;
 }>;
 
+// USER PAGE
+export interface UserPage {
+  users: UserData[];
+  nextCursor: string | null;
+}
+
 // GET REFER JOB DATA
 export function getReferJobData(loggedInUserId: string) {
   return {
@@ -90,7 +96,10 @@ export interface EventPage {
 }
 
 
-// GET NOTIFICATION DATA
+
+
+
+// // GET NOTIFICATION DATA
 // export const getNotificationsData = {
 //   issuer: {
 //     select: {
@@ -106,23 +115,23 @@ export interface EventPage {
 //   },
 // } satisfies Prisma.NotificationInclude;
 
-// TYPE OF NOTIFICATION DATA
+// // TYPE OF NOTIFICATION DATA
 // export type NotificationData = Prisma.NotificationGetPayload<{
 // include: typeof getNotificationsData;
 // }>;
 
-// TYPE OF NOTIFICATION PAGE
+// // TYPE OF NOTIFICATION PAGE
 // // export interface NotificationPage {
 //   notifications: NotificationData[];
 //   nextCursor: string | null;
 // // }
 
-// // NOTIFICATION UNREAD COUNT TYPE
-// export interface NotificationUnreadCount {
-//   unreadCount: number;
-// }
+// NOTIFICATION UNREAD COUNT TYPE
+export interface NotificationUnreadCount {
+  unreadCount: number;
+}
 
-// // STREAM MSG UNREAD COUNT TYPE
-// export interface StreamMessageUnreadCount {
-//   unreadCount: number;
-// }
+// STREAM MSG UNREAD COUNT TYPE
+export interface StreamMessageUnreadCount {
+  unreadCount: number;
+}

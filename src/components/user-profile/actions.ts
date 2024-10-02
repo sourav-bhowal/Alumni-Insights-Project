@@ -1,6 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-// import streamServer from "@/lib/stream";
+import streamServer from "@/lib/stream";
 import {
   updateUserProfileSchema,
   UpdateUserProfileSchemaType,
@@ -40,12 +40,12 @@ export async function updateUserProfile(values: UpdateUserProfileSchemaType) {
     });
 
     // stream user
-    // await streamServer.partialUpdateUser({
-    //   id: user.id,
-    //   set: {
-    //     name: validatedValues.username,
-    //   },
-    // });
+    await streamServer.partialUpdateUser({
+      id: user.id,
+      set: {
+        name: validatedValues.username,
+      },
+    });
 
     // return updated user data to client
     return updatedUser;

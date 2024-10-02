@@ -23,7 +23,7 @@ async function MentorsSection({
     .join(" & ");
 
   // FILTERS
-  const filters: any = {
+  const filters: FilterMentors = {
     ...(searchString && {
       OR: [
         { username: { contains: searchString, mode: "insensitive" } },
@@ -100,18 +100,19 @@ async function MentorsSection({
 
   // JSX
   return (
-    <div className="flex flex-col gap-10 md:gap-52">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {mentors.map((mentor: User) => (
-          <MentorCard key={mentor.id} mentor={mentor} />
-        ))}
-      </div>
-      <div>
-        <Pagination
+    <div className="flex flex-col">
+      <div className="flex items-center mb-3 justify-between">
+      <h2 className="text-lg font-semibold">Our Mentors</h2>
+      <Pagination
           page={page}
           totalPages={totalPages}
           hasNextPage={hasNextPage}
         />
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {mentors.map((mentor: User) => (
+          <MentorCard key={mentor.id} mentor={mentor} />
+        ))}
       </div>
     </div>
   );
