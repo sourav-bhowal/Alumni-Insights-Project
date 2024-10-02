@@ -40,7 +40,7 @@ async function MentorsSection({
   const skip = (Number(page) - 1) * Number(perPage);
 
   // CACHE KEY
-  const cacheKey = `mentors:${filters}${take}${skip}`;
+  const cacheKey = `mentors: ${JSON.stringify(filters)} ${skip} ${take}`;
 
   // Try to get cached mentors data
   const cachedMentors = await redis.get(cacheKey);
@@ -67,7 +67,7 @@ async function MentorsSection({
     });
 
     // Cache the fetched data with a TTL of 1800 seconds (30 minutes)
-    await redis.set(`${cacheKey}`, JSON.stringify(mentors), "EX", 1800);
+    await redis.set(cacheKey, JSON.stringify(mentors), "EX", 1800);
   }
 
   // Try to get cached mentors count
@@ -101,9 +101,9 @@ async function MentorsSection({
   // JSX
   return (
     <div className="flex flex-col">
-      <div className="flex items-center mb-3 justify-between">
-      <h2 className="text-lg font-semibold">Our Mentors</h2>
-      <Pagination
+      <div className="mb-3 flex items-center justify-between">
+        <h2 className="text-lg font-semibold">Our Mentors</h2>
+        <Pagination
           page={page}
           totalPages={totalPages}
           hasNextPage={hasNextPage}

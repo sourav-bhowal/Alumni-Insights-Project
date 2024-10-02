@@ -50,7 +50,6 @@ export default async function MentorPage({
 
       {/* Right side div for displaying jobs */}
       <div className="w-full p-4">
-        {/* <h2 className="mb-4 text-lg font-semibold">Our Mentors</h2> */}
         {/* Add mentors display components here */}
         <MentorsSectionWithSuspense {...mentorFilterValues}  />
       </div>

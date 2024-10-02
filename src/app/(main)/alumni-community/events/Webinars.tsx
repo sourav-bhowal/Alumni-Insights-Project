@@ -5,10 +5,10 @@ import { EventPage } from "@/utils/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import EventCard from "./EventCard";
-import EventCardSkeleton from "@/components/shared/EventCardLoadingSkeleton";
+import EventCardSkeleton from "@/components/events/EventCardLoadingSkeleton";
 
 // ALL EVENTS PAGE
-export default function Seminars() {
+export default function Webinars() {
   const {
     data,
     fetchNextPage,
@@ -17,11 +17,11 @@ export default function Seminars() {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["all-events", "seminars"],
+    queryKey: ["all-events", "webinars"],
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/events/get-seminars",
+          "/api/events/get-webinars",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<EventPage>(),
@@ -31,7 +31,7 @@ export default function Seminars() {
   });
 
   // EVENTS
-  const seminars = data?.pages.flatMap((page) => page.events) || [];
+  const webinars = data?.pages.flatMap((page) => page.events) || [];
 
   // RENDERING EVENTS
   if (status === "pending") {
@@ -39,7 +39,7 @@ export default function Seminars() {
   }
 
   // IF THERE ARE NO EVENTS
-  if (status === "success" && !seminars.length && !hasNextPage) {
+  if (status === "success" && !webinars.length && !hasNextPage) {
     return <p className="text-center text-muted-foreground">No Reunion events yet.</p>;
   }
 
@@ -59,7 +59,7 @@ export default function Seminars() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {seminars.map((event) => (
+        {webinars.map((event) => (
           <EventCard key={event.id} event={event} />
         ))}
       </div>

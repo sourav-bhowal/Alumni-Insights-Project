@@ -59,13 +59,13 @@ const alumni = [
   },
   {
     title: "Hall of Fame",
-    href: "/alumni/hof",
+    href: "/alumni-community/hof",
     description: "Read about the success of our alumni",
     icon: <Scroll />,
   },
   {
     title: "Events",
-    href: "/events",
+    href: "/alumni-community/events",
     description: "Join our upcoming events",
     icon: <Bell />,
   },
@@ -74,19 +74,19 @@ const alumni = [
 const connect = [
   {
     title: "Chat",
-    href: "/chat",
+    href: "/connect/chat",
     description: "Get in touch with our team",
     icon: <MessageCircle />,
   },
   {
     title: "Forums",
-    href: "/forums",
+    href: "/connect/forums",
     description: "Join the discussion with other alumni",
     icon: <MessageSquare />,
   },
   {
     title: "News",
-    href: "/news",
+    href: "/connect/news",
     description: "Read the latest news and updates from our team",
     icon: <Newspaper />,
   },
@@ -114,11 +114,11 @@ function Features() {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+          className={`transform rounded-xl bg-card/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
             isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
-          <div className="grid grid-cols-2">
+          <div className="flex flex-col">
             {services.map((service, index) => (
               <div key={index} className="space-y-2">
                 <Link href={service.href}>
@@ -131,10 +131,10 @@ function Features() {
                         {service.icon}
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-white">
+                        <div className="text-sm font-medium dark:text-white text-black">
                           {service.title}
                         </div>
-                        <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                        <p className="text-xs dark:text-gray-400 text-gray-800 duration-500 group-hover/fea:text-black group-hover/fea:dark:text-white">
                           {service.description}
                         </p>
                       </div>
@@ -172,7 +172,7 @@ function Community() {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+          className={`transform rounded-xl bg-card/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
             isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
@@ -189,10 +189,10 @@ function Community() {
                         {service.icon}
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-white">
+                        <div className="text-sm font-medium dark:text-white text-black">
                           {service.title}
                         </div>
-                        <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                        <p className="text-xs dark:text-gray-400 text-gray-800 duration-500 group-hover/fea:text-black group-hover/fea:dark:text-white">
                           {service.description}
                         </p>
                       </div>
@@ -231,7 +231,7 @@ function Connect() {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className={`transform rounded-xl bg-black/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
+          className={`transform rounded-xl bg-card/50 p-4 shadow-lg backdrop-blur-md transition-all duration-1000 ease-in-out ${
             isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
@@ -248,10 +248,10 @@ function Connect() {
                         {service.icon}
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-white">
+                        <div className="text-sm font-medium dark:text-white text-black">
                           {service.title}
                         </div>
-                        <p className="text-xs text-gray-400 duration-500 group-hover/fea:text-white">
+                        <p className="text-xs dark:text-gray-400 text-gray-800 duration-500 group-hover/fea:text-black group-hover/fea:dark:text-white">
                           {service.description}
                         </p>
                       </div>
