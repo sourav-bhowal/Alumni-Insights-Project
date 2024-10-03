@@ -40,7 +40,7 @@ async function filterAlumni(formData: FormData) {
 }
 
 // FILTER JOB COMPONENT
-export default async function MentorsFilters() {
+export default async function AlumniFilters() {
   // GET LOACTIONS FROM DB
   const distinctLocations = await prisma.user
     .findMany({

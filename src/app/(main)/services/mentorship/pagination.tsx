@@ -1,4 +1,4 @@
-"use server";
+
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";

@@ -10,6 +10,8 @@ export default function EventCardSkeleton() {
       <EventCardLoadingSkeleton />
       <EventCardLoadingSkeleton />
       <EventCardLoadingSkeleton />
+      <EventCardLoadingSkeleton />
+      <EventCardLoadingSkeleton />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 
 // GET USER DATA
 export function getUserData(loggedInUserId: string) {
@@ -95,6 +95,12 @@ export interface EventPage {
   nextCursor: string | null;
 }
 
+// Define the interface for the data object
+export interface AlumniData {
+  alumni: User[]; // Replace AlumniType with the actual type of alumni
+  totalPages: number;
+  hasNextPage: boolean;
+}
 
 
 

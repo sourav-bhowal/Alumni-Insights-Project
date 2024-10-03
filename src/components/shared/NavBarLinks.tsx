@@ -275,14 +275,14 @@ export default function NavbarLinks() {
     <header className="">
       <div className="flex items-center justify-between">
         <nav className="hidden gap-2 md:flex">
-          <Link href={"/"}>
+          {/* <Link href={"/"}>
             <Button
               variant="ghost"
               className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted/50"
             >
               Home
             </Button>
-          </Link>
+          </Link> */}
           <Features />
           <Community />
           <Connect />
