@@ -1,7 +1,7 @@
 import MentorCard from "./MentorCard";
 import { prisma } from "@/lib/prisma";
 import { FilterMentors } from "@/lib/filterValidations";
-import { Pagination } from "./pagination";
+import { Pagination } from "../../../../components/shared/pagination";
 import { redis } from "@/lib/redis";
 import { User } from "@prisma/client";
 import { Suspense } from "react";

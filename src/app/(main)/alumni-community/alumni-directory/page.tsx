@@ -6,8 +6,8 @@ import AlumniSection from "./AlumniSection";
 
 // METADATA
 export const metadata: Metadata = {
-  title: "Mentors",
-  description: "Find mentors to guide you in your career",
+  title: "Alumni Directory",
+  description: "Find and connect with our alumni community",
 };
 
 // MENTOR PAGE PROPS
