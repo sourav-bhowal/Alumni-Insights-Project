@@ -78,10 +78,6 @@ export const fileRouter = {
       maxFileSize: "64MB",
       maxFileCount: 5,
     },
-    pdf: {
-      maxFileSize: "8MB",
-      maxFileCount: 5,
-    },
   })
     // middle wares for user auth
     .middleware(async () => {

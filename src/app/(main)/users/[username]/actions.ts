@@ -1,17 +1,14 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import streamServer from "@/lib/stream";
-import {
-  updateUserProfileSchema,
-  UpdateUserProfileSchemaType,
-} from "@/lib/validations";
 import { validateRequest } from "@/lib/auth";
 import { getUserData } from "@/utils/types";
+import { updateUserSchema, UpdateUserSchemaType } from "@/lib/validations";
 
 // UPDATE USER PROFILE
-export async function updateUserProfile(values: UpdateUserProfileSchemaType) {
+export async function updateUserProfile(values: UpdateUserSchemaType) {
   // validate values
-  const validatedValues = updateUserProfileSchema.parse(values);
+  const validatedValues = updateUserSchema.parse(values);
 
   // user from session
   const { user } = await validateRequest();
@@ -29,11 +26,13 @@ export async function updateUserProfile(values: UpdateUserProfileSchemaType) {
       data: {
         username: validatedValues.username,
         displayName: validatedValues.displayName,
-        location: validatedValues.location,
         bio: validatedValues.bio,
+        location: validatedValues.location,
         yearOfGrad: validatedValues.yearOfGrad,
         skills: {
-          set: validatedValues.skills.map((skillId) => ({ id: skillId })),
+          connect: validatedValues.skills.map((skill) => ({
+            id: skill.id,
+          })),
         },
       },
       select: getUserData(user.id),

@@ -1,53 +1,45 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-import { getEventData } from "@/utils/types";
 import { validateRequest } from "@/lib/auth";
-import { createEventSchema, CreateEventSchemaType } from "@/lib/validations";
+import {
+  CreateUserProjectSchemaType,
+  createUserProjectSchema,
+} from "@/lib/validations";
+import { getUserProjectData } from "@/utils/types";
 import { UTApi } from "uploadthing/server";
+import { redis } from "@/lib/redis";
 
-// CREATE EVENT SERVER ACTION
-export async function createEvent(inputValues: CreateEventSchemaType) {
+// CREATE USER PROJECT SERVER ACTION
+export async function createUserProject(
+  inputValues: CreateUserProjectSchemaType,
+) {
   // GET USER FROM SESSION
   const { user } = await validateRequest();
 
   // IF NO USER
   if (!user) throw Error("Unauthorized");
 
-  // IF USER IS NOT ADMIN
-  if (!user.isAlumni) throw Error("Unauthorized");
-
   // VALIDATE INPUT VALUES
-  const {
-    title,
-    description,
-    location,
-    date,
-    type,
-    time,
-    registrationLink,
-    mediaIds,
-  } = createEventSchema.parse(inputValues);
+  const { title, description, link, showInProfile, mediaIds } =
+    createUserProjectSchema.parse(inputValues);
 
-  // CREATE EVENT
-  const newEvent = await prisma.event.create({
+  // CREATE USER PROJECT
+  const newUserProject = await prisma.project.create({
     data: {
       title,
       description,
-      location,
-      date,
-      time,
-      type,
-      registrationLink,
+      link,
+      showInProfile,
       attachments: {
         connect: mediaIds.map((mediaId) => ({ id: mediaId })),
       },
       userId: user.id,
     },
-    include: getEventData(user.id),
+    include: getUserProjectData(user.id),
   });
 
   // IF NO EVENT
-  if (!newEvent) {
+  if (!newUserProject) {
     mediaIds.map(async (mediaId) => {
       const deletedMedia = await prisma.attachment.delete({
         where: { id: mediaId },
@@ -61,8 +53,10 @@ export async function createEvent(inputValues: CreateEventSchemaType) {
         await new UTApi().deleteFiles(key);
       }
     });
+  } else {
+    await redis.del(`userProjects:${user.id}`);
   }
 
-  // RETURN EVENT
-  return newEvent;
+  // RETURN NEW USER PROJECT
+  return newUserProject;
 }

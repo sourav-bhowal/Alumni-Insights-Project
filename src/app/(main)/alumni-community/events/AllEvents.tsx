@@ -65,5 +65,5 @@ export default function AllEvents() {
       </div>
       {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>
-  );
+  ); 
 }

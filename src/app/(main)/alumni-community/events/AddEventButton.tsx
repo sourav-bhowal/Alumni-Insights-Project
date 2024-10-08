@@ -1,5 +1,5 @@
 "use client";
-import AddEventDialog from "../../../components/events/addEvent/AddEventForm";
+import AddEventDialog from "@/components/events/addEvent/AddEventForm";
 import React, { useState } from "react";
 
 // Add upcoming event

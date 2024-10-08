@@ -16,6 +16,7 @@ interface EventCardProps {
 export default function EventCard({ event }: EventCardProps) {
   // GET LOGGED IN USER
   const { user: loggedInUser } = useSession();
+
   // JSX
   return (
     <Card className="h-[250px] overflow-hidden">
@@ -41,8 +42,7 @@ export default function EventCard({ event }: EventCardProps) {
         <CardContent className="relative w-2/3 p-4">
           <div className="w-full">
             <h2 className="mb-1 text-2xl font-bold">{event.title}</h2>
-            {new Date(event.date).toDateString() >
-              new Date().toDateString() && (
+            {event.date.toString() > new Date().toISOString() && (
               <div className="absolute right-0 top-4 hidden rounded-l-[8px] bg-primary px-2 py-1 md:flex">
                 Upcoming
               </div>

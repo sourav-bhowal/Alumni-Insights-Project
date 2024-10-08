@@ -123,12 +123,10 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
   async function onSubmit(data: CreateEventSchemaType) {
     mutation.mutate(
       {
-        event: {
-          ...data,
-          mediaIds: medias
-            .map((media) => media.mediaId)
-            .filter(Boolean) as string[],
-        },
+        ...data,
+        mediaIds: medias
+          .map((media) => media.mediaId)
+          .filter(Boolean) as string[],
       },
       // ON SUCCESS FUNCTION
       {
@@ -327,7 +325,7 @@ export default function AddEventDialog({ open, onOpenChange }: AddEventProps) {
                           .map((media) => media?.mediaId)
                           .filter((id) => id !== undefined),
                       )}
-                      {console.log(form.getValues("mediaIds"))}
+                      {/* {console.log(form.getValues("mediaIds"))} */}
                     </>
                   )}
                 </div>

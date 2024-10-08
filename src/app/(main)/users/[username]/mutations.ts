@@ -1,6 +1,6 @@
 import { useToast } from "@/components/ui/use-toast";
 import { useUploadThing } from "@/lib/uploadthing";
-import { UpdateUserProfileSchemaType } from "@/lib/validations";
+import { UpdateUserSchemaType } from "@/lib/validations";
 import {
   InfiniteData,
   QueryFilters,
@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { updateUserProfile } from "./actions";
-// import { PostsPage } from "@/utils/types";
 
 // UPDATE USER PROFILE MUTATION
 export function useUpdateUserProfileMutation() {
@@ -29,7 +28,7 @@ export function useUpdateUserProfileMutation() {
       values,
       avatarFile,
     }: {
-      values: UpdateUserProfileSchemaType;
+      values: UpdateUserSchemaType;
       avatarFile?: File;
     }) => {
       // update user info and avatar at same time so we use Promise.all
@@ -38,22 +37,19 @@ export function useUpdateUserProfileMutation() {
         avatarFile && startAvatarUpload([avatarFile]), // upload avatar if it exists, send it in array
       ]);
     },
-    onSuccess: async () => {
-      // router refresh to update profile for server components
+    // ON SUCCESS
+    onSuccess: () => {
       router.refresh();
-
-      // toast
       toast({
         title: "Profile updated",
-        description: "Your profile has been updated.",
+        description: "Your profile has been updated successfully",
       });
     },
-    onError: (error) => {
-      console.log(error);
-      // toast
+    // ON ERROR
+    onError: () => {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: "An error occurred while updating your profile",
         variant: "destructive",
       });
     },

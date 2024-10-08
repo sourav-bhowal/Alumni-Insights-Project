@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import SessionProvider from "../../context/SessionProvider";
 import NavBar from "@/components/shared/NavBar";
 import Footer from "@/components/shared/Footer";
-// import SideMenuBar from "@/components/shared/SideMenuBar";
 
 // MAIN LAYOUT
 export default async function MainLayout({

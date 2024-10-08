@@ -73,7 +73,7 @@ export type SignInSchemaType = z.infer<typeof signInSchema>;
 export type CreateReferJobSchemaType = z.infer<typeof createReferJobSchema>;
 
 // UPDATE USER PROFILE SCHEMA
-export const updateUserProfileSchema = z.object({
+export const updateUserSchema = z.object({
   username: z
     .string()
     .trim()
@@ -93,21 +93,12 @@ export const updateUserProfileSchema = z.object({
     .string()
     .trim()
     .max(100, "Location must not exceed 100 characters"),
-  skills: z
-    .array(
-      z.string().trim().max(100, "Each skill must not exceed 100 characters"),
-    )
-    .max(10, "You can specify up to 10 skills"), // Optional: limit the number of skills
-  yearOfGrad: z.coerce
-    .number()
-    .min(4, "Year of Graduation must not less than 4 characters")
-    .max(4, "Year of Graduation must not exceed 4 characters"),
+  skills: z.array(z.object({ name: z.string().trim(), id: z.string().trim() })),
+  yearOfGrad: z.coerce.number(),
 });
 
 // SCHEMA VALIDATIONS FOR FORMS
-export type UpdateUserProfileSchemaType = z.infer<
-  typeof updateUserProfileSchema
->;
+export type UpdateUserSchemaType = z.infer<typeof updateUserSchema>;
 
 // CREATE INTRENSHIP SCHEMA
 export const createReferInternshipSchema = z.object({
@@ -169,3 +160,44 @@ export const createEventSchema = z.object({
 
 // SCHEMA VALIDATIONS FOR FORMS
 export type CreateEventSchemaType = z.infer<typeof createEventSchema>;
+
+// CREATE USER PROJECT SCHEMA
+export const createUserProjectSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(1, "Title is required")
+    .max(100, "Title must not exceed 100 characters"),
+  description: z
+    .string()
+    .trim()
+    .min(1, "Description is required")
+    .max(1000, "Description must not exceed 1000 characters"),
+  link: z.string().url("Invalid URL").optional(),
+  showInProfile: z.boolean().optional(),
+  mediaIds: z.array(z.string()).max(2, "Max 2 attachemnt per project"),
+});
+
+// CREATE USER INTERNSHIP SCHEMA
+export const createUserInternshipSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(1, "Title is required")
+    .max(100, "Title must not exceed 100 characters"),
+  description: z
+    .string()
+    .trim()
+    .min(1, "Description is required")
+    .max(1000, "Description must not exceed 1000 characters"),
+  showInProfile: z.boolean().optional(),
+  link: z.string().url("Invalid URL").optional(),
+});
+
+// SCHEMA VALIDATIONS FOR FORMS
+export type CreateUserProjectSchemaType = z.infer<
+  typeof createUserProjectSchema
+>;
+export type CreateUserInternshipSchemaType = z.infer<
+  typeof createUserInternshipSchema
+>;

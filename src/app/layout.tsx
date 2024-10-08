@@ -6,12 +6,22 @@ import { Toaster } from "@/components/ui/toaster";
 import ReactQueryProvider from "@/context/QueryProvider";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
+import { fileRouter } from "./api/uploadthing/core";
 // import { fileRouter } from "./api/uploadthing/core";
-
+import localFont from "next/font/local";
 const roboto = Roboto({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-roboto",
+});
+
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+});
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
 });
 
 // METADATA FOR SEO
@@ -30,14 +40,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.variable}>
-      <body>
-        <ThemeProvider attribute="class">
-          <ReactQueryProvider>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             {children}
-            <Toaster />
-          </ReactQueryProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+          <Toaster />
+        </ReactQueryProvider>
       </body>
     </html>
   );

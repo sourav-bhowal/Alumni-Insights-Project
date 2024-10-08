@@ -18,6 +18,7 @@ export function getUserData(loggedInUserId: string) {
       select: {
         projects: true,
         researchPapers: true,
+        internships: true,
       },
     },
   } satisfies Prisma.UserSelect;
@@ -31,6 +32,27 @@ export type UserData = Prisma.UserGetPayload<{
 // USER PAGE
 export interface UserPage {
   users: UserData[];
+  nextCursor: string | null;
+}
+
+// GET USER PROJECT DATA
+export function getUserProjectData(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserData(loggedInUserId),
+    },
+    attachments: true,
+  } satisfies Prisma.ProjectInclude;
+}
+
+// TYPE OF USER PROJECT DATA
+export type UserProjectData = Prisma.ProjectGetPayload<{
+  include: ReturnType<typeof getUserProjectData>;
+}>;
+
+// USER PROJECT PAGE
+export interface UserProjectPage {
+  projects: UserProjectData[];
   nextCursor: string | null;
 }
 
@@ -101,9 +123,6 @@ export interface AlumniData {
   totalPages: number;
   hasNextPage: boolean;
 }
-
-
-
 
 // // GET NOTIFICATION DATA
 // export const getNotificationsData = {

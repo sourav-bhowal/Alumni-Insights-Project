@@ -56,41 +56,46 @@ model Skill {
 
 // PROJECTS MODEL
 model Project {
-  id          String       @id @default(cuid())
-  title       String
-  description String
-  userId      String
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Attachment[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id            String       @id @default(cuid())
+  title         String
+  description   String
+  userId        String
+  showInProfile Boolean      @default(false)
+  link          String?
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attachments   Attachment[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 
   @@map("projects")
 }
 
 // INTERNSHIPS MODEL
 model Internship {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  link          String
+  showInProfile Boolean  @default(false)
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@map("internships")
 }
 
 // RESEARCH PAPERS MODEL
 model ResearchPaper {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  link        String
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  link          String
+  showInProfile Boolean  @default(false)
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@map("research_papers")
 }
