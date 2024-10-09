@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { validateRequest } from "@/lib/auth";
 import { getUserProjectData } from "@/utils/types";
 import { redis } from "@/lib/redis";
+import { UTApi } from "uploadthing/server";
 
 // DELETE REFER JOB
 export async function deleteUserProject(userProjectId: string) {
@@ -29,9 +30,25 @@ export async function deleteUserProject(userProjectId: string) {
     include: getUserProjectData(user.id),
   });
 
+  // Delete the media files of the post
   if (deletedUserProject) {
-    // Delete cache
+    // clear cache
     await redis.del(`userProjects:${user.id}`);
+    // Delete media files from DB
+    deletedUserProject.attachments.map(async (attachment) => {
+      const deletedMedia = await prisma.attachment.delete({
+        where: { id: attachment.id },
+      });
+
+      // Delete the media files from uploadthing
+      if (deletedMedia) {
+        // Delete media files from uploadthing
+        const key = deletedMedia.url.split(
+          `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
+        )[1];
+        await new UTApi().deleteFiles(key);
+      }
+    });
   }
 
   // Return refer job

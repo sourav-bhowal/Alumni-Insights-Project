@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { UserProjectData } from "@/utils/types";
 import { useState } from "react";
 import {
@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../../ui/button";
 import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
-import DeleteUserProjectDialogue from "./delete-project/DeleteUserProject";
+import DeleteUserProjectDialog from "./delete-project/DeleteUserProject";
+import EditUserProjectDialog from "./edit-project/EditUserProjectForm";
 
 // TYPE OF MORE REFER JOB BUTTON PROPS
 interface MoreUserProjectButtonProps {
@@ -52,12 +53,17 @@ export default function UserProjectMoreButtons({
         </DropdownMenuContent>
       </DropdownMenu>
       {/* DELETE  */}
-      <DeleteUserProjectDialogue
+      <DeleteUserProjectDialog
         userProject={userProject}
         open={showDeleteDialog}
         onClose={() => setShowDeleteDialog(false)}
       />
       {/* EDIT */}
+      <EditUserProjectDialog
+        userProject={userProject}
+        open={showEditDialog}
+        onOpenChange={setShowEditDialog}
+      />
     </>
   );
 }

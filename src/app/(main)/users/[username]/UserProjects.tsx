@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { getUserProjectData, UserData, UserProjectData } from "@/utils/types";
 import { Attachment, User } from "@prisma/client";
 import Image from "next/image";
+import Link from "next/link";
 
 // User Projects
 export default async function UserProjects() {
@@ -90,6 +91,11 @@ async function UserProjectCard({ project }: UserProjectCardProps) {
           <UserProjectMediaPreviews attachments={project.attachments} />
         )
       }
+      {project.link && (
+        <Link href={project.link} className="text-primary hover:underline items-end">
+          View Details
+        </Link>
+      )}
     </div>
   );
 }
