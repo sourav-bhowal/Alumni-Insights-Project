@@ -46,6 +46,12 @@ export default async function UserProjects() {
     await redis.set(cacheKey, JSON.stringify(projects), "EX", 1800);
   }
 
+  if (projects.length === 0 ) {
+    return (
+      <p className="text-center text-muted-foreground">No projects yet.</p>
+    )
+  }
+
   // RENDER
   return (
     <div>
