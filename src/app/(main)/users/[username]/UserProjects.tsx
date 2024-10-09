@@ -92,7 +92,7 @@ async function UserProjectCard({ project }: UserProjectCardProps) {
         )
       }
       {project.link && (
-        <Link href={project.link} className="text-primary hover:underline items-end">
+        <Link href={project.link} className="text-primary hover:underline flex justify-end text-sm">
           View Details
         </Link>
       )}

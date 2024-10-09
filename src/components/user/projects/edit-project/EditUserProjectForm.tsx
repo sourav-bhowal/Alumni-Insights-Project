@@ -176,6 +176,7 @@ export default function EditUserProjectDialog({
                       className="h-5 w-5 accent-primary"
                       {...field}
                       value={field.value ? "true" : "false"}
+                      checked={field.value}
                     />
                   </FormControl>
                   <FormLabel className="text-start">Show in profile</FormLabel>
