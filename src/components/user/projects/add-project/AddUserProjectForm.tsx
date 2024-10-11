@@ -27,20 +27,28 @@ import {
   CreateUserProjectSchemaType,
 } from "@/lib/validations";
 import { Loader2, PlusCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { prisma } from "@/lib/prisma";
+import { useToast } from "@/components/ui/use-toast";
 
 // Interface for Add User Project Props
 interface AddUserProjectProps {
+  userProfileProjectCount: number;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
 // Add User project Component
 export default function AddUserProjectDialog({
+  userProfileProjectCount,
   open,
   onOpenChange,
 }: AddUserProjectProps) {
   // TAKE USER FORM SESSION CONTEXT
   const { user } = useSession();
+
+  // TOAST HOOK
+  const { toast } = useToast();
 
   // USE MUTATION
   const mutation = useCreateUserProjectMutation();
@@ -77,8 +85,17 @@ export default function AddUserProjectDialog({
 
   // ON FORM SUBMIT
   async function onSubmit(values: CreateUserProjectSchemaType) {
+    // IF PROFILE PROJECTS COUNT IS 4
+    if (values.showInProfile && userProfileProjectCount >= 4) {
+      toast({
+        title: "Profile Projects Limit",
+        description: "You can only show 4 projects on your profile.",
+        variant: "destructive",
+      });
+      return;
+    }
+    // CALL MUTATION
     mutation.mutate(
-      // CALL MUTATION
       {
         ...values,
         mediaIds: medias
@@ -162,6 +179,7 @@ export default function AddUserProjectDialog({
                       className="h-5 w-5 accent-primary"
                       {...field}
                       value={field.value ? "true" : "false"}
+                      disabled={userProfileProjectCount >= 4}
                     />
                   </FormControl>
                   <FormLabel className="text-start">Show in profile</FormLabel>

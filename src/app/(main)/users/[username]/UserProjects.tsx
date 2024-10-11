@@ -40,12 +40,14 @@ export default async function UserProjects() {
       orderBy: {
         createdAt: "desc",
       },
+      take: 4,
       include: getUserProjectData(loggedInUser.id),
     });
     // Cache the fetched data with a TTL of 1800 seconds (30 minutes)
     await redis.set(cacheKey, JSON.stringify(projects), "EX", 1800);
   }
 
+  // If no projects found
   if (projects.length === 0 ) {
     return (
       <p className="text-center text-muted-foreground">No projects yet.</p>

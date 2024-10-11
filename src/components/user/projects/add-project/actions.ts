@@ -23,13 +23,24 @@ export async function createUserProject(
   const { title, description, link, showInProfile, mediaIds } =
     createUserProjectSchema.parse(inputValues);
 
+  // COUNT EXISTING PROJECTS SHOWN IN PROFILE
+  const profileProjectsCount = await prisma.project.count({
+    where: {
+      userId: user.id,
+      showInProfile: true,
+    },
+  });
+
+  // SET showInProfile TO FALSE IF USER ALREADY HAS 4 PROJECTS SHOWN IN PROFILE
+  const canShowInProfile = profileProjectsCount <= 4 && showInProfile;
+
   // CREATE USER PROJECT
   const newUserProject = await prisma.project.create({
     data: {
       title,
       description,
       link,
-      showInProfile,
+      showInProfile: canShowInProfile,
       attachments: {
         connect: mediaIds.map((mediaId) => ({ id: mediaId })),
       },

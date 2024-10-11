@@ -53,6 +53,17 @@ export const fetchSkills = cache(async (): Promise<Skill[]> => {
   return skills;
 });
 
+// Fetch User Projects shown on profile
+const UserProfileShownProjects = cache(async (userId: string) => {
+  const showInProfileProjects = await prisma.project.count({
+    where: {
+      userId,
+      showInProfile: true,
+    },
+  });
+  return showInProfileProjects;
+});
+
 // Generate Meta Data for User Page
 export async function generateMetadata({
   params,
@@ -77,6 +88,7 @@ interface UserProfileProps {
 
 // User Profile Component
 async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
+  const UserProfileShownProjectsCount = await UserProfileShownProjects(user.id);
   return (
     <div className="h-fit w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
       <UserAvatar
@@ -115,7 +127,7 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
         {user.id === loggedInUserId && (
           <div className="space-y-3">
             <EditProfileButton user={user} />
-            <AddUserProjectButton />
+            <AddUserProjectButton userProfileProjectCount={UserProfileShownProjectsCount}/>
           </div>
           // ) : (
           // <FollowButton userId={user.id} initialState={followerInfo} />
