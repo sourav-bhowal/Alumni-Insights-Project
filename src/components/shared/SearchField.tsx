@@ -18,7 +18,7 @@ export default function SearchField() {
     if (!query) return;
 
     // push to the desired search page while ignoring special url characters
-    router.push(`/search?query=${encodeURIComponent(query)}`);
+    router.push(`/connect/news?q=${encodeURIComponent(query)}`);
   }
 
   return (

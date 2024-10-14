@@ -6,13 +6,13 @@ import React from "react";
 // PAGINATION PROPS INTERFACE
 type PaginationProps = {
   page?: string;
-  totalPages: number;
-  hasNextPage: boolean;
+  totalPages?: number;
+  hasNextPage?: boolean;
 };
 
 // PAGINATION COMPONENT
 export const Pagination = (props: PaginationProps) => {
-  const { page = 1, totalPages, hasNextPage } = props;
+  const { page = 1, totalPages = 0, hasNextPage } = props;
 
   const currentPage = Number(page);
 
